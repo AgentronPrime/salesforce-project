@@ -239,6 +239,8 @@ The following bundles exist under `force-app/main/default/lwc/`. Per §2.4, they
 
 - `serviceChannels/`, `queueRoutingConfigs/`, `queues/`, `skills/`, `presenceUserConfigs/`, `servicePresenceStatuses/` — present under `force-app/main/default/` for Digital Engagement / routing.
 
+**Dedicated routing TDD:** `docs/05-TDD-Omni-Channel-Routing-Test-Drive.md` — full design for `TestDriveTriggerHandler`, `AgentWorkTriggerHandler`, `RoutingPriorityCalculator`, PSR queue/skills flows, dealer skill batches/invocable, Service Channel secondary priority, and your **routing package.xml** inventory with file paths and test checklist.
+
 ---
 
 ## 6. Integration and security
@@ -280,4 +282,5 @@ Messaging channel metadata includes **opt-in / double opt-in** automated respons
 1. **This file** — core TDD with diagrams and numbered sections.  
 2. `02-Hackathon-Rules-Alignment-and-Submission.md` — official rules mapping and submission checklist.  
 3. `03-WhatsApp-Messaging-Supplement.md` — WhatsApp metadata list + org narrative (templates, approvals, Support case).  
-4. `04-Data-Cloud-Architecture-and-Flows.md` — Data Cloud ingest diagram and object list.
+4. `04-Data-Cloud-Architecture-and-Flows.md` — Data Cloud ingest diagram and object list.  
+5. `05-TDD-Omni-Channel-Routing-Test-Drive.md` — **Omni / queue / PSR / skills** routing TDD and enhanced deploy manifest notes.

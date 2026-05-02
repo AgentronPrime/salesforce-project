@@ -4,7 +4,7 @@ This document describes the **Book Test Drive Agent** solution for **Electra Car
 
 The implementation uses **Salesforce Automotive Cloud** data (Leads, Vehicles, Accounts/dealers, `Test_Drive__c`), **Agentforce** (Einstein Service Agent) for the conversational journey, **Digital Engagement** (WhatsApp and embedded web messaging), an **Experience Cloud–style** digital site (**AutoCloudExperience1**) with **Electra Cars Agent** embedded via **Embedded Service**, **Omni-Channel** routing patterns, **Prompt Builder** for AI review summaries, and **Data Cloud** ingest metadata aligned with deeper customer and journey analytics.
 
-**Companion docs:** For architecture diagrams, section-numbered TDD, hackathon rules alignment, WhatsApp supplement, and Data Cloud stream lists, see `docs/01-TDD-Test-Drive-Agent.md` through `docs/04-Data-Cloud-Architecture-and-Flows.md`.
+**Companion docs:** For architecture diagrams, section-numbered TDD, hackathon rules alignment, WhatsApp supplement, Data Cloud stream lists, and **Omni routing deep dive**, see `docs/01-TDD-Test-Drive-Agent.md` through `docs/05-TDD-Omni-Channel-Routing-Test-Drive.md`.
 
 ---
 
@@ -103,6 +103,8 @@ Together, these actions implement the hackathon **mandatory** behaviors: **AI-dr
 ---
 
 ## 5. Intelligent routing and dealer operations
+
+**Full routing TDD:** `docs/05-TDD-Omni-Channel-Routing-Test-Drive.md` (PSR queue vs skills, `Routing_Priority__c`, Service Channel, queues, `AgentWork`, dealer skill batches, enhanced package inventory).
 
 **`TestDriveTriggerHandler`** (invoked from `triggers/TestDriveTrigger.trigger` on `Test_Drive__c`):
 
