@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataKitObjectDependency xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataPackageKitDef>Electra_devops_data_kit</dataPackageKitDef>
+    <developerName>Asset_Home</developerName>
+    <masterLabel>Asset_Home__dll</masterLabel>
+    <sourceObject>Asset_Home1</sourceObject>
+    <sourceObjectType>DataSourceObject</sourceObjectType>
+    <targetObject>Asset_Home</targetObject>
+</DataKitObjectDependency>

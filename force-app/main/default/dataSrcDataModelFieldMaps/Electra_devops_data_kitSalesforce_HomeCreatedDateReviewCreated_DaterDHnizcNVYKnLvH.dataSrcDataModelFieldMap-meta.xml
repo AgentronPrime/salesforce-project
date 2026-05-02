@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSrcDataModelFieldMap xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterApplied>false</filterApplied>
+    <filterOperationType>Equal</filterOperationType>
+    <masterLabel>Electra_devops_data_kitSalesforce_HomeCreatedDateReviewCreated_DaterDHnizcNVYKnLvH</masterLabel>
+    <sourceField>Review_c_Home1.CreatedDate__c</sourceField>
+    <targetField>Review__dlm.Created_Date__c</targetField>
+    <templateVersion>1</templateVersion>
+    <versionNumber>1.0</versionNumber>
+</DataSrcDataModelFieldMap>

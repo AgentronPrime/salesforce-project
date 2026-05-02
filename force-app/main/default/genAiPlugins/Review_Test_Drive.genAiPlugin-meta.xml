@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>Use this subagent when the user wants to review an existing test drive. Also use it when the user replies 2, review, or review a test drive.</description>
+    <developerName>Review_Test_Drive</developerName>
+    <genAiPluginInstructions>
+        <description>If the user selected 2, review, or review a test drive, handle the review flow. Ask for the required details step by step. If the user wants booking, reschedule, or cancel instead, do not handle it here.</description>
+        <developerName>instruction_0_1777103228322</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0_1777103228322</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <localDeveloperName>Review_Test_Drive</localDeveloperName>
+    <masterLabel>Review Test Drive</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to handle only review requests for an existing test drive. Do not handle booking, reschedule, or cancel requests.</scope>
+</GenAiPlugin>

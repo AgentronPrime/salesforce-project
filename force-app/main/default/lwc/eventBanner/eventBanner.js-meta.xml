@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Event Banner</masterLabel>
+    <description>Premium automotive event banner with animated background, 
+                 glassmorphism effects, and CTA buttons for Experience Cloud.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="titleLine1" type="String"
+                      label="Title Line 1" 
+                      default="Car Month"/>
+
+            <property name="titleLine2" type="String"
+                      label="Title Line 2 (Bold)" 
+                      default="Sales Event"/>
+
+            <property name="subtitle" type="String"
+                      label="Eyebrow / Subtitle" 
+                      default="Exclusive Offers 2026"/>
+
+            <property name="description" type="String"
+                      label="Description Text"
+                      default="Discover unbeatable deals on premium vehicles. Trade-in bonuses, special financing, and exclusive packages available this month only."/>
+
+            <property name="primaryButtonLabel" type="String"
+                      label="Primary Button Label" 
+                      default="Learn More"/>
+
+            <property name="secondaryButtonLabel" type="String"
+                      label="Secondary Button Label" 
+                      default="Contact Us"/>
+
+            <property name="primaryPageName" type="String"
+                      label="Primary Button Page (API Name)"
+                      default="Learn_More"
+                      description="The API name of the Experience Site page for the primary button"/>
+
+            <property name="secondaryPageName" type="String"
+                      label="Secondary Button Page (API Name)"
+                      default="Contact_Us"
+                      description="The API name of the Experience Site page for the secondary button"/>
+
+            <property name="bannerHeight" type="String"
+                      label="Banner Height"
+                      default="92vh"
+                      description="CSS height value (e.g., 92vh, 600px)"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

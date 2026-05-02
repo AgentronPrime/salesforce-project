@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesMinimizeWidgetOnAccept>false</doesMinimizeWidgetOnAccept>
+    <hasAutoAcceptEnabled>false</hasAutoAcceptEnabled>
+    <isInterruptible>false</isInterruptible>
+    <label>Test Drive Requests</label>
+    <relatedEntityType>Test_Drive__c</relatedEntityType>
+    <secondaryRoutingPriorityField>Routing_Priority__c</secondaryRoutingPriorityField>
+    <serviceChannelFieldPriorities>
+        <priority>1</priority>
+        <value>1</value>
+    </serviceChannelFieldPriorities>
+    <serviceChannelFieldPriorities>
+        <priority>2</priority>
+        <value>2</value>
+    </serviceChannelFieldPriorities>
+    <serviceChannelFieldPriorities>
+        <priority>3</priority>
+        <value>3</value>
+    </serviceChannelFieldPriorities>
+</ServiceChannel>

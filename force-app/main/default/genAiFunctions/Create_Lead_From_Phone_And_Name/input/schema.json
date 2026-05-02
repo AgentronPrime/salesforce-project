@@ -1,0 +1,21 @@
+{
+  "required" : [ "fullName", "phoneNumber" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "fullName" : {
+      "title" : "fullName",
+      "description" : "The full name provided by the user for creating a new lead.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "phoneNumber" : {
+      "title" : "phoneNumber",
+      "description" : "The phone number provided by the user for creating a new lead.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,28 @@
+<template>
+    <div class="container">
+        <div class="header" if:true={showHeader}>
+            <div class="header-row">
+                <div class="einstein-icon" aria-hidden="true">
+                    <lightning-icon icon-name="utility:einstein" size="small" alternative-text=""></lightning-icon>
+                </div>
+                <div class="header-text">
+                    <span class="header-title">{headerTitle}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="options" role="group" aria-label="Quick options">
+            <template for:each={options} for:item="opt">
+                <button
+                    key={opt.id}
+                    type="button"
+                    class="option-btn"
+                    data-id={opt.id}
+                    onclick={handleOptionClick}
+                >
+                    {opt.label}
+                </button>
+            </template>
+        </div>
+    </div>
+</template>

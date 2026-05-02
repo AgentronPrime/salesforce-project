@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Log_Type__c</fullName>
+    <label>Log Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Verification</fullName>
+                <default>false</default>
+                <label>Verification</label>
+            </value>
+            <value>
+                <fullName>Incoming_Message</fullName>
+                <default>false</default>
+                <label>Incoming Message</label>
+            </value>
+            <value>
+                <fullName>Status_Update</fullName>
+                <default>false</default>
+                <label>Status Update</label>
+            </value>
+            <value>
+                <fullName>Error</fullName>
+                <default>false</default>
+                <label>Error</label>
+            </value>
+            <value>
+                <fullName>Auto_Reply</fullName>
+                <default>false</default>
+                <label>Auto Reply</label>
+            </value>
+            <value>
+                <fullName>General</fullName>
+                <default>false</default>
+                <label>General</label>
+            </value>
+            <value>
+                <fullName>Outbound Message</fullName>
+                <default>false</default>
+                <label>Outbound Message</label>
+            </value>
+            <value>
+                <fullName>Contact Matched</fullName>
+                <default>false</default>
+                <label>Contact Matched</label>
+            </value>
+            <value>
+                <fullName>Contact Not Found</fullName>
+                <default>false</default>
+                <label>Contact Not Found</label>
+            </value>
+            <value>
+                <fullName>Case Created</fullName>
+                <default>false</default>
+                <label>Case Created</label>
+            </value>
+            <value>
+                <fullName>Webhook Error</fullName>
+                <default>false</default>
+                <label>Webhook Error</label>
+            </value>
+            <value>
+                <fullName>Token Error</fullName>
+                <default>false</default>
+                <label>Token Error</label>
+            </value>
+            <value>
+                <fullName>Template Sent</fullName>
+                <default>false</default>
+                <label>Template Sent</label>
+            </value>
+            <value>
+                <fullName>Text Sent</fullName>
+                <default>false</default>
+                <label>Text Sent</label>
+            </value>
+            <value>
+                <fullName>Image Sent</fullName>
+                <default>false</default>
+                <label>Image Sent</label>
+            </value>
+            <value>
+                <fullName>Document Sent</fullName>
+                <default>false</default>
+                <label>Document Sent</label>
+            </value>
+            <value>
+                <fullName>Message Failed</fullName>
+                <default>false</default>
+                <label>Message Failed</label>
+            </value>
+            <value>
+                <fullName>Message Delivered</fullName>
+                <default>false</default>
+                <label>Message Delivered</label>
+            </value>
+            <value>
+                <fullName>Message Read</fullName>
+                <default>false</default>
+                <label>Message Read</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

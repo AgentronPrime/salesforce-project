@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Agentforce Quick Options</masterLabel>
+    <description>Three quick-reply style buttons for Experience Cloud / Lightning pages. Pair with embedded Agentforce chat.</description>
+    <targets>
+        <target>lightning__AgentforceInput</target>
+    </targets>
+</LightningComponentBundle>

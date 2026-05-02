@@ -1,0 +1,78 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "VehicleShowcase",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "row",
+            "maxContentWidth" : "none",
+            "sectionColumnGutterWidth" : "10rem",
+            "sectionConfig" : "{\"UUID\":\"5b231a1f-6194-4263-a03a-c960578a311c\",\"columns\":[{\"UUID\":\"8d7fa735-faf5-4e87-b9cb-c7916b760127\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "center"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "brandName" : "AUTOMOTIVE",
+                "brandTagline" : "CLOUD",
+                "isLoggedIn" : false,
+                "userEmail" : "john@example.com",
+                "userName" : "John Doe"
+              },
+              "definition" : "c:navigationBanner",
+              "id" : "18c81c27-2253-4ae0-b6e7-e92c76b501ec",
+              "type" : "component"
+            }, {
+              "attributes" : { },
+              "definition" : "c:vehicleShowcaseCmp",
+              "id" : "35497381-4dd1-4c54-8ecf-7c305ddb6ff3",
+              "type" : "component"
+            } ],
+            "id" : "8d7fa735-faf5-4e87-b9cb-c7916b760127",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "5b231a1f-6194-4263-a03a-c960578a311c",
+          "type" : "component"
+        } ],
+        "id" : "55135bbe-30e4-4e1c-9d78-587b0bf91649",
+        "name" : "content",
+        "title" : "Content",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "pageTitle" : "VehicleShowcase",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "a7a9ef6c-1ee5-4c22-994e-bf097b22cced",
+          "type" : "component"
+        } ],
+        "id" : "ec3ff561-6478-4441-b804-9c9d4234aeef",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "d3bad69a-210f-4833-8539-310ffaecc993",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "custom-vehicleshowcase"
+  },
+  "urlName" : "vehicleshowcase"
+}

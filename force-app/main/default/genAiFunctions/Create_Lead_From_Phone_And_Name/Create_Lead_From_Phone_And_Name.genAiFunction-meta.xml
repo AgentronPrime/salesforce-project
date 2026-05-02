@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates a Lead using the provided phone number and full name.</description>
+    <developerName>Create_Lead_From_Phone_And_Name</developerName>
+    <invocationTarget>ElectraCreateLeadAction</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <localDeveloperName>Create_Lead_From_Phone_And_Name</localDeveloperName>
+    <masterLabel>Create Lead From Phone And Name</masterLabel>
+</GenAiFunction>

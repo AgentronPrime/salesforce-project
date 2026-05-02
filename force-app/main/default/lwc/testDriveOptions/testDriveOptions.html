@@ -1,0 +1,39 @@
+<template>
+    <div class="container">
+        <!-- Header -->
+        <div class="header-section">
+            <p class="greeting-text">Hi! 👋 I can help you with test drives. What would you like to do?</p>
+        </div>
+
+        <!-- Options -->
+        <div class="options-section">
+            <!-- Option 1: Book a Test Drive -->
+            <div class="option-card" onclick={handleBookClick}>
+                <div class="option-icon">
+                    <span class="emoji-icon">🚗</span>
+                </div>
+                <div class="option-content">
+                    <h2 class="option-title">Book a Test Drive</h2>
+                    <p class="option-description">Schedule a test drive for your favorite vehicle</p>
+                </div>
+                <div class="option-arrow">
+                    <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                </div>
+            </div>
+
+            <!-- Option 2: Review My Test Drive -->
+            <div class="option-card" onclick={handleReviewClick}>
+                <div class="option-icon">
+                    <span class="emoji-icon">📋</span>
+                </div>
+                <div class="option-content">
+                    <h2 class="option-title">Review My Test Drive</h2>
+                    <p class="option-description">Check or confirm your existing test drive booking</p>
+                </div>
+                <div class="option-arrow">
+                    <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

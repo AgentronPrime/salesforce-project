@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Navigation Banner</masterLabel>
+    <description>Premium automotive navigation banner for Experience Cloud sites with responsive design, search, and user menu.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="brandName" type="String" label="Brand Name" default="AUTOMOTIVE"
+                      description="Primary brand name displayed in the logo area"/>
+            <property name="brandTagline" type="String" label="Brand Tagline" default="CLOUD"
+                      description="Tagline displayed below the brand name"/>
+            <property name="isLoggedIn" type="Boolean" label="Show as Logged In" default="false"
+                      description="Toggle to preview logged-in state"/>
+            <property name="userName" type="String" label="User Name" default="John Doe"
+                      description="Display name for logged-in user"/>
+            <property name="userEmail" type="String" label="User Email" default="john@example.com"
+                      description="Email for logged-in user dropdown"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

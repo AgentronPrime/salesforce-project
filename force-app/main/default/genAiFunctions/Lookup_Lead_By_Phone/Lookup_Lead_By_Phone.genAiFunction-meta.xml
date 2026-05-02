@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Looks up a Lead using mobile phone or phone number.</description>
+    <developerName>Lookup_Lead_By_Phone</developerName>
+    <invocationTarget>ElectraLookupLeadByPhoneAction</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <localDeveloperName>Lookup_Lead_By_Phone</localDeveloperName>
+    <masterLabel>Lookup Lead By Phone</masterLabel>
+</GenAiFunction>

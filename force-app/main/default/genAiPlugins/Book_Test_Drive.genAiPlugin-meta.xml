@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>Use this subagent when the user wants to book a test drive or schedule a new test drive. Also use it when the user replies 1, book, or book a test drive. Stay in this subagent when the user provides a phone number or full name during this flow.</description>
+    <developerName>Book_Test_Drive</developerName>
+    <genAiFunctions>
+        <functionName>Create_Lead_From_Phone_And_Name</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Lookup_Lead_By_Phone</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>When the user wants to book a test drive:
+- Ask only for the user&apos;s phone number first.
+- Do not ask for model, date, time, or location at this stage.
+ 
+When the user provides a phone number:
+- Immediately invoke the Lookup_Lead_By_Phone action with that phone number.
+- Do not ask for anything else before invoking this action.
+ 
+If Lookup_Lead_By_Phone returns foundLead = true:
+- Greet the user by the returned leadName.
+- Confirm their profile was found and proceed with booking.
+ 
+If Lookup_Lead_By_Phone returns foundLead = false:
+- Ask only for the user&apos;s full name.
+- Do not ask for anything else.
+ 
+When the user provides their full name:
+- Immediately invoke the Create_Lead_From_Phone_And_Name action with the phone number 
+  collected earlier and the full name just provided.
+- After the action returns, greet the user by the returned leadName.
+- Confirm their details have been saved.
+
+Important rules:
+- Stay in this subagent when the user provides a phone number or full name.
+- Do not classify phone numbers or names as Off Topic during this flow.
+- Do not handle review, reschedule, or cancel requests — politely inform the 
+  user this subagent handles new bookings only.</description>
+        <developerName>instruction_0_1777192426656</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0_1777192426656</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <localDeveloperName>Book_Test_Drive</localDeveloperName>
+    <masterLabel>Book Test Drive</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to handle only new test drive booking requests. First ask for phone number, then look up the lead. If no lead is found, ask for full name and create a new lead. Do not handle review, reschedule, or cancel requests.</scope>
+</GenAiPlugin>

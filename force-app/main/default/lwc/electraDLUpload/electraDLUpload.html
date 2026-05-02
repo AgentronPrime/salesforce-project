@@ -1,0 +1,186 @@
+<template>
+    <div class="page-wrapper">
+
+        <!-- Loading State -->
+        <template if:true={isLoading}>
+            <div class="loading-box">
+                <lightning-spinner
+                    alternative-text="Loading"
+                    size="medium">
+                </lightning-spinner>
+                <p class="loading-text">
+                    Loading your booking details...
+                </p>
+            </div>
+        </template>
+
+        <!-- Error State -->
+        <template if:true={hasError}>
+            <div class="error-card">
+                <div class="error-icon">⚠️</div>
+                <h3>Something went wrong</h3>
+                <p>{errorMessage}</p>
+            </div>
+        </template>
+
+        <!-- Success State -->
+        <template if:true={isSuccess}>
+            <div class="success-card">
+                <div class="success-icon">✅</div>
+                <h2>Upload Successful!</h2>
+                <p class="success-subtitle">
+                    Your Driving License has been 
+                    submitted for verification.
+                </p>
+                <div class="info-grid">
+                    <div class="info-row">
+                        <span class="info-label">
+                            Booking ID
+                        </span>
+                        <span class="info-value bold">
+                            {testDriveName}
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            Vehicle
+                        </span>
+                        <span class="info-value">
+                            {vehicleName}
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            Dealer
+                        </span>
+                        <span class="info-value">
+                            {dealerName}
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            Date
+                        </span>
+                        <span class="info-value">
+                            {testDriveDate}
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            Slot
+                        </span>
+                        <span class="info-value">
+                            {slotLabel}
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            Status
+                        </span>
+                        <span class="status-badge">
+                            Pending Verification
+                        </span>
+                    </div>
+                </div>
+                <p class="success-note">
+                    Our team will verify your DL and 
+                    confirm your booking shortly.
+                </p>
+            </div>
+        </template>
+
+        <!-- Upload Form -->
+        <template if:true={showUpload}>
+            <div class="upload-card">
+
+                <!-- Header -->
+                <div class="card-header">
+                    <div class="header-icon">🚗</div>
+                    <div>
+                        <h2 class="card-title">
+                            Upload Driving License
+                        </h2>
+                        <p class="card-subtitle">
+                            Complete your test drive 
+                            booking verification
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Booking Summary -->
+                <div class="summary-section">
+                    <h3 class="section-title">
+                        Booking Summary
+                    </h3>
+                    <div class="info-grid">
+                        <div class="info-row">
+                            <span class="info-label">
+                                📋 Booking ID
+                            </span>
+                            <span class="info-value bold">
+                                {testDriveName}
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">
+                                🚗 Vehicle
+                            </span>
+                            <span class="info-value">
+                                {vehicleName}
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">
+                                🏢 Dealer
+                            </span>
+                            <span class="info-value">
+                                {dealerName}
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">
+                                📅 Date
+                            </span>
+                            <span class="info-value">
+                                {testDriveDate}
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">
+                                ⏰ Slot
+                            </span>
+                            <span class="info-value">
+                                {slotLabel}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lightning File Upload -->
+                <div class="upload-section">
+                    <h3 class="section-title">
+                        Your Driving License
+                    </h3>
+                    <p class="upload-hint">
+                        Accepted formats: JPG, PNG, PDF
+                    </p>
+                    <lightning-file-upload
+                        label="Choose Driving License File"
+                        name="drivingLicense"
+                        accept={acceptedFormats}
+                        record-id={testDriveId}
+                        onuploadfinished={handleUploadFinished}
+                        multiple="false">
+                    </lightning-file-upload>
+                </div>
+
+                <p class="disclaimer">
+                    🔒 Your document is securely uploaded 
+                    and only accessible to our team.
+                </p>
+
+            </div>
+        </template>
+
+    </div>
+</template>

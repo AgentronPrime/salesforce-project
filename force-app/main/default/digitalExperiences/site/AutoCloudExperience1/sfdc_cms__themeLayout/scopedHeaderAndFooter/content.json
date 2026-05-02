@@ -1,0 +1,152 @@
+{
+  "type" : "sfdc_cms__themeLayout",
+  "title" : "Scoped Header and Footer",
+  "contentBody" : {
+    "component" : {
+      "attributes" : {
+        "hideThemeFooter" : false,
+        "showThemeFooterAtBottom" : false,
+        "stickyThemeHeader" : false
+      },
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "isVisible" : true
+            },
+            "layoutDirectionDesktop" : "column",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "0rem",
+            "sectionConfig" : "{\"UUID\":\"32a52327-32cc-4352-9772-26a94f6b70a5\",\"columns\":[{\"UUID\":\"e64d3392-2cbb-4056-bfe0-f02ab3aa2dce\",\"columnName\":\"Column 1\",\"columnKey\":\"headerSection\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "brandName" : "AUTOMOTIVE",
+                "brandTagline" : "CLOUD",
+                "isLoggedIn" : false,
+                "userEmail" : "john@example.com",
+                "userName" : "John Doe"
+              },
+              "definition" : "c:navigationBanner",
+              "id" : "4cc74756-1128-4aad-9861-76a107f30326",
+              "type" : "component"
+            } ],
+            "id" : "e64d3392-2cbb-4056-bfe0-f02ab3aa2dce",
+            "name" : "headerSection",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "32a52327-32cc-4352-9772-26a94f6b70a5",
+          "type" : "component"
+        } ],
+        "id" : "856f8997-f961-4a03-9af6-73a639d5fc36",
+        "name" : "header",
+        "title" : "Theme Header",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "column",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "none",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"bfff083c-42d7-4983-8ebd-d4bd16eca88c\",\"columns\":[{\"UUID\":\"1249b6b4-c4c9-4628-bf8e-9b6b43f9e8ad\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "id" : "1249b6b4-c4c9-4628-bf8e-9b6b43f9e8ad",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "bfff083c-42d7-4983-8ebd-d4bd16eca88c",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "clientVersion" : "WebV1",
+            "deploymentName" : "Electra_cars_chat_deployment",
+            "hideChatButtonOnLoad" : "Default",
+            "isExpSiteAuthMode" : false,
+            "scrtUrl" : "https://orgfarm-c0d788b8f5.my.salesforce-scrt.com",
+            "siteEndpoint" : "https://orgfarm-c0d788b8f5.my.site.com/ESWElectracarschatdepl1776164493722"
+          },
+          "definition" : "experience_messaging:embeddedMessaging",
+          "id" : "51291693-5802-4d5f-a48b-5fa2425a35e2",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "isVisible" : true
+            },
+            "layoutDirectionDesktop" : "column",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"a5674ab2-9658-4c73-a09f-b51f6f32e4b2\",\"columns\":[{\"UUID\":\"2c1ea27d-a665-44e1-b597-c0598092556c\",\"columnName\":\"Column 1\",\"columnKey\":\"footerSection\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "id" : "2c1ea27d-a665-44e1-b597-c0598092556c",
+            "name" : "footerSection",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "a5674ab2-9658-4c73-a09f-b51f6f32e4b2",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"786ec31d-7fdb-40ab-9cb1-f77040b40074\",\"columns\":[{\"UUID\":\"d07ab6e4-3081-460d-8cc7-171f5e005629\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "id" : "d07ab6e4-3081-460d-8cc7-171f5e005629",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "786ec31d-7fdb-40ab-9cb1-f77040b40074",
+          "type" : "component"
+        } ],
+        "id" : "dfb12014-fbe8-4cd6-91ab-ab106dd05c3d",
+        "name" : "footer",
+        "title" : "Theme Footer",
+        "type" : "region"
+      } ],
+      "definition" : "community_byo:scopedHeaderAndFooter",
+      "id" : "4e86e40e-ebec-40c0-9930-449f61003ab1",
+      "type" : "component"
+    }
+  },
+  "urlName" : "scoped-header-and-footer"
+}

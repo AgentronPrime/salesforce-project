@@ -1,0 +1,14 @@
+{
+  "required" : [ "customerMessage" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "customerMessage" : {
+      "title" : "Customer Message",
+      "description" : "The initial message or greeting from the customer that triggers the quick options.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

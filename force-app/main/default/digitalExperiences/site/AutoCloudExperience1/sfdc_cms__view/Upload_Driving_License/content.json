@@ -1,0 +1,53 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Upload Driving License",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "id" : "bab69e18-d7da-438c-a624-314a57fbf9cc",
+        "name" : "header",
+        "title" : "header",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : { },
+          "definition" : "c:electraDLUpload",
+          "id" : "2c213d7f-5edd-4be1-8be1-0120e1a6c938",
+          "type" : "component"
+        } ],
+        "id" : "b6ab89f3-7f03-44e3-a906-bd7a2fd22383",
+        "name" : "content",
+        "title" : "content",
+        "type" : "region"
+      }, {
+        "id" : "da3915d1-3d45-4f88-9c4b-7d0218ddeead",
+        "name" : "footer",
+        "title" : "footer",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "pageTitle" : "Upload Driving License",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "65ac5559-8897-45f6-8d74-d6a7a90a32ed",
+          "type" : "component"
+        } ],
+        "id" : "782f405a-162f-479c-bc48-ff3f3b018955",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsOneColLayout",
+      "id" : "3bb19594-6cce-482c-b833-a9730a6a36d6",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "custom-upload-dl"
+  },
+  "urlName" : "upload-driving-license"
+}

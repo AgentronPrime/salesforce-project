@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Electra Quick Options Renderer</masterLabel>
+    <description>Renders Electra quick options for Agentforce actions.</description>
+
+    <targets>
+        <target>lightning__AgentforceOutput</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+
+    <targetConfigs>
+        <!-- AgentforceOutput: property type must be a Lightning type, not primitive String. -->
+        <targetConfig targets="lightning__AgentforceOutput">
+            <sourceType name="c__QuickOptionsResponse"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

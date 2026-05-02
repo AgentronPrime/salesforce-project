@@ -1,0 +1,143 @@
+<template>
+    <header class="nav-banner">
+        <div class="nav-container">
+            <!-- Logo Section -->
+            <div class="logo-section" onclick={handleLogoClick}>
+                <div class="logo-wrapper">
+                    <svg class="logo-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Shield Shape -->
+                        <path d="M40 4 L72 18 L72 42 C72 60 56 74 40 78 C24 74 8 60 8 42 L8 18 Z"
+                              fill="none" stroke="#c0392b" stroke-width="3"/>
+                        <path d="M40 8 L68 20 L68 42 C68 58 54 70 40 74 C26 70 12 58 12 42 L12 20 Z"
+                              fill="rgba(192,57,43,0.1)" stroke="none"/>
+                        <!-- Car Silhouette -->
+                        <path d="M18 48 L22 38 L30 32 L50 32 L58 38 L62 48 Z"
+                              fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+                        <line x1="16" y1="48" x2="64" y2="48" stroke="#ffffff" stroke-width="1.5"/>
+                        <!-- Wheels -->
+                        <circle cx="28" cy="48" r="4" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+                        <circle cx="28" cy="48" r="1.5" fill="#c0392b"/>
+                        <circle cx="52" cy="48" r="4" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+                        <circle cx="52" cy="48" r="1.5" fill="#c0392b"/>
+                        <!-- Speed Lines -->
+                        <line x1="14" y1="40" x2="8" y2="40" stroke="#ffffff" stroke-width="0.8" opacity="0.6"/>
+                        <line x1="14" y1="43" x2="6" y2="43" stroke="#ffffff" stroke-width="0.8" opacity="0.4"/>
+                        <line x1="14" y1="46" x2="10" y2="46" stroke="#ffffff" stroke-width="0.8" opacity="0.5"/>
+                    </svg>
+                    <div class="brand-text">
+                        <span class="brand-name">AUTOMOTIVE</span>
+                        <span class="brand-tagline">CLOUD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Links - Desktop -->
+            <nav class="nav-links-desktop">
+                <template for:each={navItems} for:item="item">
+                    <a key={item.id}
+                       class={item.cssClass}
+                       href={item.href}
+                       onclick={handleNavClick}
+                       data-id={item.id}
+                       data-page={item.pageRef}>
+                        {item.label}
+                        <span class="nav-underline"></span>
+                    </a>
+                </template>
+            </nav>
+
+            <!-- Right Section: Search + Login + Mobile Toggle -->
+            <div class="nav-right">
+                <!-- Search -->
+                <div class="search-container">
+                    <button class="icon-btn search-toggle" onclick={toggleSearch} aria-label="Search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
+                        </svg>
+                    </button>
+                    <div class={searchBarClass}>
+                        <input type="text"
+                               class="search-input"
+                               placeholder="Search vehicles, services..."
+                               value={searchTerm}
+                               onkeyup={handleSearchKeyup}
+                               oninput={handleSearchInput}/>
+                        <button class="search-close" onclick={toggleSearch} aria-label="Close search">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Login / User Menu -->
+                <template if:false={isLoggedIn}>
+                    <a class="login-btn" href="javascript:void(0);" onclick={handleLogin}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span class="login-text">Login</span>
+                    </a>
+                </template>
+                <template if:true={isLoggedIn}>
+                    <div class="user-menu-wrapper">
+                        <button class="user-avatar-btn" onclick={toggleUserMenu}>
+                            <span class="user-initials">{userInitials}</span>
+                        </button>
+                        <template if:true={isUserMenuOpen}>
+                            <div class="user-dropdown">
+                                <div class="user-dropdown-header">
+                                    <span class="user-dropdown-name">{userName}</span>
+                                    <span class="user-dropdown-email">{userEmail}</span>
+                                </div>
+                                <div class="user-dropdown-divider"></div>
+                                <a class="user-dropdown-item" href="javascript:void(0);" onclick={handleMyAccount}>
+                                    My Account
+                                </a>
+                                <a class="user-dropdown-item" href="javascript:void(0);" onclick={handleMyVehicles}>
+                                    My Vehicles
+                                </a>
+                                <a class="user-dropdown-item" href="javascript:void(0);" onclick={handleServiceHistory}>
+                                    Service History
+                                </a>
+                                <div class="user-dropdown-divider"></div>
+                                <a class="user-dropdown-item logout-item" href="javascript:void(0);" onclick={handleLogout}>
+                                    Sign Out
+                                </a>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- Mobile Menu Toggle -->
+                <button class={hamburgerClass} onclick={toggleMobileMenu} aria-label="Toggle menu">
+                    <span class="hamburger-line line-1"></span>
+                    <span class="hamburger-line line-2"></span>
+                    <span class="hamburger-line line-3"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div class={mobileMenuClass}>
+            <nav class="mobile-nav-links">
+                <template for:each={navItems} for:item="item">
+                    <a key={item.id}
+                       class={item.mobileCssClass}
+                       href={item.href}
+                       onclick={handleNavClick}
+                       data-id={item.id}
+                       data-page={item.pageRef}>
+                        {item.label}
+                    </a>
+                </template>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer to prevent content from hiding behind fixed nav -->
+    <div class="nav-spacer"></div>
+</template>

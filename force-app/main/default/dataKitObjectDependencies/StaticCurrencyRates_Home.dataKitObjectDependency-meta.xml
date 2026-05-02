@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataKitObjectDependency xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataPackageKitDef>Electra_devops_data_kit</dataPackageKitDef>
+    <developerName>StaticCurrencyRates_Home</developerName>
+    <masterLabel>StaticCurrencyRates_Home__dll</masterLabel>
+    <sourceObject>StaticCurrencyRates_Home</sourceObject>
+    <sourceObjectType>DataSourceObject</sourceObjectType>
+    <targetObject>StaticCurrencyRates_Home</targetObject>
+</DataKitObjectDependency>

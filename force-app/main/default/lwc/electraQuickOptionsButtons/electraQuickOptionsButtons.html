@@ -1,0 +1,20 @@
+<template>
+    <div class="quick-options-container">
+        <template if:true={hasOptions}>
+            <template for:each={options} for:item="opt">
+                <button
+                    key={opt.id}
+                    class="quick-option-button"
+                    data-message={opt.utterance}
+                    onclick={handleClick}
+                    type="button">
+                    {opt.label}
+                </button>
+            </template>
+        </template>
+
+        <template if:false={hasOptions}>
+            <div class="empty-state">No options available.</div>
+        </template>
+    </div>
+</template>

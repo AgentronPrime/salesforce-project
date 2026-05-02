@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PresenceUserConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>admin</profile>
+        </profiles>
+        <users>
+            <user>epic.6bb203e9ce73@orgfarm.salesforce.com</user>
+            <user>ziya.zeba.z.shaik@pwc.com.dealer</user>
+        </users>
+    </assignments>
+    <capacity>1</capacity>
+    <enableAutoAccept>false</enableAutoAccept>
+    <enableDecline>false</enableDecline>
+    <enableDeclineReason>false</enableDeclineReason>
+    <enableDisconnectSound>true</enableDisconnectSound>
+    <enableRequestSound>true</enableRequestSound>
+    <hasAfterConvoWorkTimer>false</hasAfterConvoWorkTimer>
+    <label>Test Drive Agent Presence</label>
+    <presenceStatusOnPushTimeout>Available_Test_Drives</presenceStatusOnPushTimeout>
+</PresenceUserConfig>

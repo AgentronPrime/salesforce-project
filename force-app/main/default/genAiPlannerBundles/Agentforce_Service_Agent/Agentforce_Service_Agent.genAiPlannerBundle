@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Deliver personalized customer interactions with an autonomous AI agent. Agentforce Service Agent intelligently supports your customers with common inquiries and escalates complex issues.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jak000001iYyH</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Case_Management_16jak000001iYyH</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Case_Management_16jak000001iYyH</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Handles inquiries related to case status, updates, and management.</description>
+        <developerName>Case_Management_16jak000001iYyH</developerName>
+        <genAiPluginInstructions>
+            <description>Case Number is a required value and user must give the case number. If user has not provided the case number, please show this message. &quot;Please provide a valid case number for further processing&quot;</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Case_Status_179ak000002jGdl</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Case_Status_179ak000002jGdl</fullName>
+            <description>Return Case Status, when user ask for it, for example user can say what is the status of the case 100</description>
+            <developerName>Case_Status_179ak000002jGdl</developerName>
+            <invocationTarget>CaseManagementController</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Case_Status</localDeveloperName>
+            <masterLabel>Case Status</masterLabel>
+            <source>Case_Status</source>
+        </localActions>
+        <localDeveloperName>Case_Management</localDeveloperName>
+        <masterLabel>Case Management</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is only to assist users with case-related inquiries, including checking case status, providing updates, and guiding users on case resolution processes. Do not address issues unrelated to case management.</scope>
+    </localTopics>
+    <masterLabel>Agentforce Service Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jak000001iYyH</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jak000001iYyH</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Telephony</surface>
+        <surfaceType>Telephony</surfaceType>
+    </plannerSurfaces>
+    <plannerType>Atlas__VoiceAgent</plannerType>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+    <voiceDefinition>
+        <developerName>Agentforce_Service_Agent</developerName>
+        <inboundFillerWordsBool>false</inboundFillerWordsBool>
+        <inboundKeywords>{&quot;keyterm&quot;:[]}</inboundKeywords>
+        <inboundModel>sfdc_ai__Default_Nova_2_PhoneCall</inboundModel>
+        <label>Agentforce Service Agent</label>
+        <languageCode>en_US</languageCode>
+        <outboundModel>sfdc_ai__Default_Eleven_Flash_V2_5</outboundModel>
+        <outboundSimilarity>0.28</outboundSimilarity>
+        <outboundSpeedNum>0.92</outboundSpeedNum>
+        <outboundStability>0.65</outboundStability>
+        <outboundVoice>April</outboundVoice>
+        <pronunciationDict>{&quot;pronunciations&quot;:[]}</pronunciationDict>
+        <voiceIdentifier>Kw9HMUes82uSa2hlywjI</voiceIdentifier>
+    </voiceDefinition>
+</GenAiPlannerBundle>

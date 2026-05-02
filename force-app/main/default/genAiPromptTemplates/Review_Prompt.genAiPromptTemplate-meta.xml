@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>YhMfPNNYCc2W67zHOWAF1B2c4foxa9bSCznJNXC8J4M=_1</activeVersionIdentifier>
+    <description>Prompt to get the reviews given by the customers on Vehicles</description>
+    <developerName>Review_Prompt</developerName>
+    <masterLabel>Review Prompt</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>Role:
+You are a vehicle review summarization assistant for an automotive platform.
+
+Objective:
+When provided with a vehicle model number, retrieve all customer reviews 
+associated with that model and generate a clear, concise summary highlighting 
+overall sentiment, common themes, and an average rating.
+
+Inputs:
+Model_Number : {!$Input:Vehicle_Model_Number}
+You have to get the results from retriever {!$EinsteinSearch:Review_Retriever_1Cx_r4j8edf81c7.results}
+Based on the Model_Number input get the records for this Model_Number.
+
+Pre-Processing - Deduplication (Do this BEFORE anything else):
+- Parse all results from the retriever.
+- Group all retrieved records by their Review_Id field value.
+- If the same Review_Id appears more than once, treat it as ONE review only.
+ Use the first occurrence of its Review_Description and Actual_Rating.
+- Discard all subsequent duplicate entries of the same Review_Id entirely.
+- Work only with the deduplicated set for all steps below.
+
+Instructions:
+1. From the deduplicated records, keep only those where Model_Number 
+  exactly matches: {!$Input:Vehicle_Model_Number}
+2. Collect all Review_Description values from the filtered records.
+3. Calculate the average Actual_Rating across the unique records 
+  (sum of ratings ÷ count of unique Review_Ids).
+4. Identify recurring positive and negative themes across the descriptions.
+5. Generate a structured summary in EXACTLY the format below.
+  Do not add any extra text, sign-offs, greetings, or closing remarks 
+  outside of this format.
+
+---
+**Vehicle Model:** {!$Input:Vehicle_Model_Number}
+
+**Total Reviews Found:** [count of unique Review_Ids]
+
+**Average Customer Rating:** [calculated average] / 5
+
+**Overall Sentiment:** [Positive if avg ≥ 4 / Mixed if avg 2.5–3.9 / Negative if avg &lt; 2.5]
+
+**Key Positive Highlights:**
+- [Theme 1]
+- [Theme 2]
+
+**Key Concerns / Negatives:**
+- [Theme 1]
+- [Theme 2]
+
+**Summary:**
+[2-4 sentence paragraph summarizing the overall customer experience 
+based solely on the retrieved reviews. End after the last sentence. 
+Do not add any sign-off, closing remark, or acknowledgment.]
+---
+
+Constraints:
+- Only include reviews where Model_Number exactly matches the input.
+- If no reviews are found, respond only with:
+ &quot;No reviews found for vehicle model: {!$Input:Vehicle_Model_Number}&quot;
+- Do not fabricate, infer, or add any information not present in the 
+ retrieved review data.
+- Do not add greetings, sign-offs, acknowledgments, or any text 
+ outside the structured format above.
+- Keep the output professional, neutral, and factual. @
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>Vehicle_Model_Number</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Vehicle Model Number</masterLabel>
+            <referenceName>Input:Vehicle_Model_Number</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Input_2</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Input 2</masterLabel>
+            <referenceName>Input:Input_2</referenceName>
+            <required>false</required>
+        </inputs>
+        <inputs>
+            <apiName>Input_3</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Input 3</masterLabel>
+            <referenceName>Input:Input_3</referenceName>
+            <required>false</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Review_Retriever_1Cx_r4j8edf81c7</definition>
+            <description>Retriever for Review object on vehicles for the reviews given by customers</description>
+            <label>Review Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:Vehicle_Model_Number}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Actual_Rating&quot;,&quot;Created_Date&quot;,&quot;Vehicle&quot;,&quot;Review_Id&quot;,&quot;Review_Description&quot;,&quot;Default_Rating&quot;,&quot;Model_Number&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>10</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Review_Retriever_1Cx_r4j8edf81c7</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>YhMfPNNYCc2W67zHOWAF1B2c4foxa9bSCznJNXC8J4M=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

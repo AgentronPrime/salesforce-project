@@ -1,0 +1,15 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "VehicleShowcase",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "attributes" : {
+          "sectionVerticalAlign" : "flex-start"
+        },
+        "id" : "5b231a1f-6194-4263-a03a-c960578a311c"
+      } ]
+    }
+  },
+  "urlName" : "vehicleshowcase"
+}

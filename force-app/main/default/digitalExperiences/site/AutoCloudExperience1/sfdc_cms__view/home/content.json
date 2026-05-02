@@ -1,0 +1,114 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Home",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "isVisible" : true
+            },
+            "layoutDirectionDesktop" : "column",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "none",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"8890a85b-d6c6-49ea-8d7c-29b6b46807e5\",\"columns\":[{\"UUID\":\"3fa100cc-cb4a-4705-8baf-d3e8dbeeb0ae\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-end"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "bannerHeight" : "100vh",
+                "description" : "Discover unbeatable deals on premium vehicles. Trade-in bonuses, special financing, and exclusive packages available this month only.",
+                "dxpStyle" : {
+                  "margin" : {
+                    "bottom" : "1px",
+                    "left" : "1px",
+                    "right" : "1px",
+                    "top" : "1px"
+                  },
+                  "padding" : {
+                    "bottom" : "1px",
+                    "left" : "1px",
+                    "right" : "1px",
+                    "top" : "1px"
+                  }
+                },
+                "primaryButtonLabel" : "Learn More",
+                "primaryPageName" : "Learn_More",
+                "secondaryButtonLabel" : "Contact Us",
+                "secondaryPageName" : "Contact_Us",
+                "subtitle" : "Exclusive Offers 2026",
+                "titleLine1" : "Car Month",
+                "titleLine2" : "Sales Event"
+              },
+              "definition" : "c:eventBanner",
+              "id" : "6b8f329c-40d5-462d-8fc1-1739e2a8bfe0",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "clientVersion" : "WebV1",
+                "deploymentName" : "Electra_cars_chat_deployment",
+                "dxpStyle" : {
+                  "padding" : {
+                    "bottom" : "",
+                    "left" : "",
+                    "right" : "",
+                    "top" : "0rem"
+                  }
+                },
+                "hideChatButtonOnLoad" : "Default",
+                "isExpSiteAuthMode" : false,
+                "scrtUrl" : "https://orgfarm-c0d788b8f5.my.salesforce-scrt.com",
+                "siteEndpoint" : "https://orgfarm-c0d788b8f5.my.site.com/ESWElectracarschatdepl1776164493722"
+              },
+              "definition" : "experience_messaging:embeddedMessaging",
+              "id" : "90aee662-0ef8-4f3f-a406-d882e605ac9c",
+              "type" : "component"
+            } ],
+            "id" : "3fa100cc-cb4a-4705-8baf-d3e8dbeeb0ae",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "8890a85b-d6c6-49ea-8d7c-29b6b46807e5",
+          "type" : "component"
+        } ],
+        "id" : "2ef74c75-89ab-4476-8261-198f83e07165",
+        "name" : "content",
+        "title" : "Content",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "pageTitle" : "Home",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "5b5b0e2d-e291-4547-9470-b79485f36ad8",
+          "type" : "component"
+        } ],
+        "id" : "aa7b2e26-5779-4422-a408-e512a83e9c1d",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "08ecf962-6186-46ad-8a81-3f37cc27f78d",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "home"
+  },
+  "urlName" : "home"
+}

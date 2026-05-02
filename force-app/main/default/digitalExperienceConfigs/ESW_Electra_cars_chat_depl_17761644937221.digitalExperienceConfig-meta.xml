@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DigitalExperienceConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>ESW_Electra_cars_chat_depl_1776164493722</label>
+    <site>
+        <urlPathPrefix>ESWElectracarschatdepl1776164493722</urlPathPrefix>
+    </site>
+    <space>site/ESW_Electra_cars_chat_depl_17761644937221</space>
+</DigitalExperienceConfig>

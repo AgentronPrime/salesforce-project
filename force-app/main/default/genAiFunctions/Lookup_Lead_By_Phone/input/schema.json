@@ -1,0 +1,14 @@
+{
+  "required" : [ "phoneNumber" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "phoneNumber" : {
+      "title" : "phoneNumber",
+      "description" : "The phone number provided by the user for lead lookup.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

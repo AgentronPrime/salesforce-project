@@ -1,0 +1,130 @@
+<template>
+    <div class="showcase">
+
+        <!-- ===== HERO HEADER ===== -->
+        <div class="hero">
+            <div class="hero-bg">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+                <div class="blob blob-4"></div>
+                <div class="grid-overlay"></div>
+                <div class="noise"></div>
+            </div>
+            <div class="hero-content">
+                <span class="hero-badge">🏷️ Premium Collection</span>
+                <h1 class="hero-title">
+                    Explore the Range of<br/>
+                    <span class="hero-highlight">Vehicles</span> from Our Store
+                </h1>
+            </div>
+            <div class="hero-fade"></div>
+        </div>
+
+        <!-- ===== TYPE PILLS ===== -->
+        <div class="pill-bar">
+            <div class="pill-bar-inner">
+                <span class="pill-label">Filter:</span>
+                <template for:each={typePills} for:item="pill">
+                    <button
+                        key={pill.value}
+                        class={pill.pillClass}
+                        data-type={pill.value}
+                        onclick={handleTypeClick}>
+                        {pill.label}
+                    </button>
+                </template>
+            </div>
+        </div>
+
+        <!-- ===== LOADING ===== -->
+        <template if:true={isLoading}>
+            <div class="state-box">
+                <lightning-spinner alternative-text="Loading..." size="large"></lightning-spinner>
+                <p class="state-text">Finding the best rides for you...</p>
+            </div>
+        </template>
+
+        <!-- ===== ERROR ===== -->
+        <template if:true={error}>
+            <div class="state-box">
+                <div class="state-icon">⚠️</div>
+                <p class="error-text">{error}</p>
+            </div>
+        </template>
+
+        <!-- ===== VEHICLE GRID ===== -->
+        <template if:false={isLoading}>
+            <template if:true={hasVehicles}>
+                <div class="vehicle-grid">
+                    <template for:each={vehicles} for:item="v">
+                        <article key={v.Id} class="v-card" data-id={v.Id} onclick={handleCardClick}>
+
+                            <!-- Image -->
+                            <div class="v-card-visual">
+                                <template if:true={v.hasImage}>
+                                    <template if:true={v.imageLoaded}>
+                                        <img
+                                            src={v.imageUrl}
+                                            alt={v.Name}
+                                            class="v-card-img"
+                                            data-id={v.Id}
+                                            onerror={handleImageError}
+                                            loading="lazy"
+                                        />
+                                    </template>
+                                    <template if:false={v.imageLoaded}>
+                                        <div class="v-card-empty">
+                                            <span class="empty-icon">X</span>
+                                            <span class="empty-text">Image not available</span>
+                                        </div>
+                                    </template>
+                                </template>
+                                <template if:false={v.hasImage}>
+                                    <div class="v-card-empty">
+                                        <span class="empty-icon">X</span>
+                                        <span class="empty-text">No image found</span>
+                                    </div>
+                                </template>
+
+                                <!-- Hover overlay -->
+                                <div class="v-card-overlay">
+                                    <span class="overlay-action">View Details →</span>
+                                </div>
+                            </div>
+
+                            <!-- Info -->
+                            <div class="v-card-info">
+                                <div class="v-card-row-top">
+                                    <span class="v-card-type">{v.vehicleType}</span>
+                                    <span class="v-card-fuel">{v.fuel}</span>
+                                </div>
+                                <h3 class="v-card-name">{v.Name}</h3>
+                                <p class="v-card-color">{v.color}</p>
+                                <div class="v-card-bottom">
+                                    <span class="v-card-price">{v.price}</span>
+                                    <span class="v-card-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </article>
+                    </template>
+                </div>
+            </template>
+
+            <!-- No Results -->
+            <template if:false={hasVehicles}>
+                <div class="state-box">
+                    <div class="state-icon">🔍</div>
+                    <p class="state-text">No vehicles found for "<strong>{selectedType}</strong>"</p>
+                    <p class="state-sub">Try selecting a different category above</p>
+                </div>
+            </template>
+        </template>
+
+    </div>
+</template>

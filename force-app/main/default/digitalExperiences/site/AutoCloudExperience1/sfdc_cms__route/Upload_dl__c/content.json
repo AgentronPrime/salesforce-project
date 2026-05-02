@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Upload Driving License",
+  "contentBody" : {
+    "activeViewId" : "Upload_Driving_License",
+    "configurationTags" : [ ],
+    "pageAccess" : "Public",
+    "routeType" : "custom-upload-dl",
+    "urlPrefix" : "upload-dl"
+  },
+  "urlName" : "upload-driving-license"
+}

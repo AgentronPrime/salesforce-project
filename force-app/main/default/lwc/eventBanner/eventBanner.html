@@ -1,0 +1,111 @@
+<template>
+    <section class="hero-banner">
+        <!-- Background Image - style set via JS -->
+        <div class="hero-bg" lwc:ref="heroBg"></div>
+
+        <!-- Animated Gradient Overlays -->
+        <div class="overlay-gradient"></div>
+        <div class="overlay-radial"></div>
+        <div class="overlay-noise"></div>
+
+        <!-- Floating Particles -->
+        <div class="particles-container">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+            <div class="particle particle-6"></div>
+            <div class="particle particle-7"></div>
+            <div class="particle particle-8"></div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="deco-line deco-line-left"></div>
+        <div class="deco-line deco-line-right"></div>
+
+        <!-- Main Content -->
+        <div class="hero-content" lwc:ref="heroContent">
+            <!-- Eyebrow / Badge -->
+            <div class="eyebrow-wrapper">
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    <span class="eyebrow-text">{subtitle}</span>
+                    <span class="eyebrow-dot"></span>
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="hero-title">
+                <span class="title-line title-line-1">{titleLine1}</span>
+                <span class="title-line title-line-2">{titleLine2}</span>
+            </h1>
+
+            <!-- Description -->
+            <p class="hero-description">{description}</p>
+
+            <!-- CTA Buttons -->
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick={handleLearnMore}>
+                    <span class="btn-content">
+                        <span class="btn-text">{primaryButtonLabel}</span>
+                        <span class="btn-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </span>
+                    <span class="btn-shimmer"></span>
+                </button>
+
+                <button class="btn btn-secondary" onclick={handleContactUs}>
+                    <span class="btn-content">
+                        <span class="btn-text">{secondaryButtonLabel}</span>
+                        <span class="btn-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <span class="trust-text">Certified Dealers</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span class="trust-text">Limited Time Offer</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="trust-text">Best Price Guarantee</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="scroll-indicator" onclick={handleScrollDown}>
+            <span class="scroll-text">Explore</span>
+            <div class="scroll-line">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+
+        <!-- Bottom Fade -->
+        <div class="bottom-fade"></div>
+    </section>
+</template>

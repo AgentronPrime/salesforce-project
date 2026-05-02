@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Vehicle_Showcase",
+  "contentBody" : {
+    "activeViewId" : "Vehicle_Showcase",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-vehicle-showcase",
+    "urlPrefix" : "vehicle-showcase"
+  },
+  "urlName" : "vehicle-showcase"
+}

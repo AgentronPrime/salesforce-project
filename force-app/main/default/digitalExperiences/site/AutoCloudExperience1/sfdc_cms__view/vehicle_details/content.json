@@ -1,0 +1,67 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "vehicle-details",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "none",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"1c6d6029-ab22-498d-97e1-a5f46dd6950b\",\"columns\":[{\"UUID\":\"ceb2fea1-8fa9-467a-bffd-17c89f6b5343\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : { },
+              "definition" : "c:vehicleDetailsCmp",
+              "id" : "b5ef759e-10c6-454a-847d-81fc5fc0b0e6",
+              "type" : "component"
+            } ],
+            "id" : "ceb2fea1-8fa9-467a-bffd-17c89f6b5343",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "1c6d6029-ab22-498d-97e1-a5f46dd6950b",
+          "type" : "component"
+        } ],
+        "id" : "4c09cbfa-a38f-4e48-a9d4-ba4625accda2",
+        "name" : "content",
+        "title" : "Content",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "pageTitle" : "vehicle-details",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "dc61a0c4-856e-4cbe-921d-efe5f248586d",
+          "type" : "component"
+        } ],
+        "id" : "81c9d452-0142-45d5-b597-d6b4411720cc",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "1f72f0d1-116f-41c7-a626-640246df200a",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "custom-vehicle-details"
+  },
+  "urlName" : "vehicle-details"
+}

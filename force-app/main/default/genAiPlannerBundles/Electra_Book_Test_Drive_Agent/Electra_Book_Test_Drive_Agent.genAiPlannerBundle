@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Electra Cars is an OEM with a premium vehicle website. Long forms cause drop-off. This agent automates test drive booking with Agentforce. It runs a natural chat on web or WhatsApp. It collects vehicle model, preferred date and time, and zip code. It confirms details before saving. It creates Automotive Cloud test drive and related records. It routes the prospect to the right dealership by zip. It sends confirmation on the preferred channel. It improves conversion and data accuracy. It cuts manual follow-up for the call center.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jak000001j4Oi</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Electra_Welcome_Router_16jak000001j4Oi</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Electra_Welcome_Router_16jak000001j4Oi</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This subagent handles first-touch chats for Electra Cars. Users want new-customer onboarding, booking a test drive (already in the journey), or a review of their last test drive. It greets, shows three starter paths, and routes intent.</description>
+        <developerName>Electra_Welcome_Router_16jak000001j4Oi</developerName>
+        <genAiPluginInstructions>
+            <description>When this subagent starts, immediately run the agent action “Get Electra Quick Options” (the invocable that returns the quick-reply list). If the action requires an input, pass the placeholder field empty unless your deployment maps a value.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Always: greet in one short sentence first, then show the three choices from the action. Never skip the action when opening this subagent.</description>
+            <developerName>instruction_2</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 2</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Get_Electra_Quick_Options_179ak000002kL1t</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Get_Electra_Quick_Options_179ak000002kL1t</fullName>
+            <description>Accepts the customer message and returns static test drive menu options.</description>
+            <developerName>Get_Electra_Quick_Options_179ak000002kL1t</developerName>
+            <invocationTarget>ElectraQuickOptionsAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Electra_Quick_Options</localDeveloperName>
+            <masterLabel>Get Electra Quick Options</masterLabel>
+            <source>Get_Electra_Quick_Options</source>
+        </localActions>
+        <localDeveloperName>Electra_Welcome_Router</localDeveloperName>
+        <masterLabel>Electra Welcome &amp; Router</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is only to welcome the shopper and present three options: new customer, book a test drive (already in), review last test drive. Keep replies short. Create or update a Lead when it fits, using approved actions. Hand off to the right flow for booking, reviews, or sales. Do not add extra menus or long troubleshooting here.</scope>
+    </localTopics>
+    <masterLabel>Agentforce Service Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jak000001j4Oi</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jak000001j4Oi</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+</GenAiPlannerBundle>

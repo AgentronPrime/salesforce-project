@@ -1,0 +1,34 @@
+<template>
+    <section class="quick-options-wrap">
+        <div class="assistant-title">{title}</div>
+
+        <template if:true={loading}>
+            <div class="state-text">Loading quick options...</div>
+        </template>
+
+        <template if:true={error}>
+            <div class="state-text error-text">
+                We couldn't load quick options right now.
+            </div>
+        </template>
+
+        <template if:true={hasOptions}>
+            <ul class="option-list">
+                <template for:each={options} for:item="opt">
+                    <li key={opt.id} class="option-item">
+                        <button
+                            class="option-btn"
+                            data-id={opt.id}
+                            data-label={opt.label}
+                            data-message={opt.message}
+                            onclick={handleSelect}
+                        >
+                            <span class="option-label">{opt.label}</span>
+                            <span class="option-message">{opt.message}</span>
+                        </button>
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </section>
+</template>

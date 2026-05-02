@@ -1,0 +1,27 @@
+<template>
+    <div class="menu-shell">
+        <div class="message">
+            Here are some quick options for you to choose from:
+        </div>
+
+        <template if:true={hasOptions}>
+            <div class="options">
+                <template for:each={options} for:item="opt">
+                    <button
+                        key={opt.id}
+                        class="option-btn"
+                        data-id={opt.id}
+                        data-label={opt.label}
+                        data-message={opt.message}
+                        onclick={handleOptionClick}>
+                        {opt.label}
+                    </button>
+                </template>
+            </div>
+        </template>
+
+        <template if:true={errorMessage}>
+            <div class="error">{errorMessage}</div>
+        </template>
+    </div>
+</template>

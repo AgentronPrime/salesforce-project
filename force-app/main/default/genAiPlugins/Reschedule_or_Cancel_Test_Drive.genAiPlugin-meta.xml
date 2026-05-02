@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>Use this subagent when the user wants to reschedule or cancel a test drive. Also use it when the user replies 3, reschedule, cancel, or reschedule/cancel.</description>
+    <developerName>Reschedule_or_Cancel_Test_Drive</developerName>
+    <genAiPluginInstructions>
+        <description>If the user selected 3, reschedule, cancel, or reschedule/cancel, handle that flow. If the user wants booking or review instead, do not handle it here.</description>
+        <developerName>instruction_0_1777103426185</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0_1777103426185</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <localDeveloperName>Reschedule_or_Cancel_Test_Drive</localDeveloperName>
+    <masterLabel>Reschedule or Cancel Test Drive</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to handle only reschedule or cancel requests for an existing test drive. Do not handle new booking or review requests.</scope>
+</GenAiPlugin>

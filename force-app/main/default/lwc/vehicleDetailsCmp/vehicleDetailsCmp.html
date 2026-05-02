@@ -1,0 +1,113 @@
+<template>
+    <div class="details-page">
+
+        <template if:true={isLoading}>
+            <div class="state-box">
+                <lightning-spinner alternative-text="Loading vehicle" size="large"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={error}>
+            <div class="state-box">
+                <p class="error-text">{error}</p>
+            </div>
+        </template>
+
+        <template if:true={hasVehicle}>
+            <section class="hero">
+                <div class="hero-bg">
+                    <div class="blob blob-1"></div>
+                    <div class="blob blob-2"></div>
+                    <div class="blob blob-3"></div>
+                    <div class="grid-overlay"></div>
+                </div>
+
+                <div class="hero-inner">
+                    <div class="hero-media">
+                        <template if:true={vehicle.hasImage}>
+                            <img src={vehicle.imageUrl} alt={vehicle.Name} class="hero-image" />
+                        </template>
+                        <template if:false={vehicle.hasImage}>
+                            <div class="hero-empty">No Image</div>
+                        </template>
+                    </div>
+
+                    <div class="hero-content">
+                        <div class="hero-pills">
+                            <span class="hero-pill">{vehicle.type}</span>
+                            <span class="hero-pill hero-pill-dark">{vehicle.fuel}</span>
+                        </div>
+
+                        <h1 class="hero-title">{vehicle.Name}</h1>
+                        <p class="hero-color">{vehicle.color}</p>
+
+                        <div class="hero-specs">
+                            <div class="hero-spec">
+                                <span class="hero-spec-label">Type</span>
+                                <span class="hero-spec-value">{vehicle.type}</span>
+                            </div>
+                            <div class="hero-spec">
+                                <span class="hero-spec-label">Fuel</span>
+                                <span class="hero-spec-value">{vehicle.fuel}</span>
+                            </div>
+                            <div class="hero-spec">
+                                <span class="hero-spec-label">Color</span>
+                                <span class="hero-spec-value">{vehicle.color}</span>
+                            </div>
+                        </div>
+
+                        <p class="hero-desc">Top Model, Classic Experience</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <div class="main-column">
+                    <div class="card">
+                        <h2 class="card-title">Key Specifications</h2>
+                        <div class="spec-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Fuel</span>
+                                <span class="spec-value">{vehicle.fuel}</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">{vehicle.type}</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">{vehicle.color}</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Name</span>
+                                <span class="spec-value">{vehicle.Name}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2 class="card-title">About This Vehicle</h2>
+                        <p class="about-text">Top Model, Classic Experience</p>
+                    </div>
+                </div>
+
+                <div class="side-column">
+                    <div class="card price-card">
+                        <h2 class="card-title">Price</h2>
+                        <div class="price">{vehicle.price}</div>
+                        <button type="button" class="offer-btn">Get Best Offer</button>
+                    </div>
+
+                    <div class="card">
+                        <h2 class="card-title">Highlights</h2>
+                        <ul class="highlights">
+                            <li>Premium design</li>
+                            <li>Comfort driving</li>
+                            <li>Modern technology</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </template>
+    </div>
+</template>

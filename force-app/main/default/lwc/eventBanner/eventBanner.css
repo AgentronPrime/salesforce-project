@@ -1,0 +1,763 @@
+/* ============================================
+   HOST & VARIABLES
+   ============================================ */
+:host {
+    display: block;
+    --color-bg-dark: #0a0a0a;
+    --color-accent: #e63946;
+    --color-accent-light: #ff6b6b;
+    --color-accent-gold: #f4a261;
+    --color-accent-glow: rgba(230, 57, 70, 0.45);
+    --color-white: #ffffff;
+    --color-white-80: rgba(255, 255, 255, 0.8);
+    --color-white-60: rgba(255, 255, 255, 0.6);
+    --color-white-40: rgba(255, 255, 255, 0.4);
+    --color-white-15: rgba(255, 255, 255, 0.15);
+    --color-white-08: rgba(255, 255, 255, 0.08);
+    --color-white-04: rgba(255, 255, 255, 0.04);
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --border-radius-lg: 16px;
+    --border-radius-full: 50px;
+}
+
+/* ============================================
+   BANNER CONTAINER
+   ============================================ */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: var(--font-display);
+}
+
+/* ============================================
+   BACKGROUND IMAGE
+   ============================================ */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    transform: scale(1.05);
+    animation: slowZoom 20s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes slowZoom {
+    0% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1.12);
+    }
+}
+
+/* ============================================
+   OVERLAYS
+   ============================================ */
+.overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        170deg,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.45) 35%,
+        rgba(0, 0, 0, 0.30) 55%,
+        rgba(0, 0, 0, 0.60) 80%,
+        rgba(10, 10, 10, 0.90) 100%
+    );
+    z-index: 1;
+}
+
+.overlay-radial {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at 30% 50%,
+        rgba(230, 57, 70, 0.08) 0%,
+        transparent 60%
+    );
+    z-index: 1;
+}
+
+.overlay-noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    z-index: 1;
+}
+
+.bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, var(--color-bg-dark) 0%, transparent 100%);
+    z-index: 2;
+}
+
+/* ============================================
+   FLOATING PARTICLES
+   ============================================ */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--color-accent);
+    opacity: 0;
+    animation: floatParticle linear infinite;
+}
+
+.particle-1 {
+    width: 4px; height: 4px;
+    left: 10%; top: 20%;
+    animation-duration: 12s;
+    animation-delay: 0s;
+}
+.particle-2 {
+    width: 3px; height: 3px;
+    left: 25%; top: 60%;
+    animation-duration: 15s;
+    animation-delay: 2s;
+    background: var(--color-accent-gold);
+}
+.particle-3 {
+    width: 5px; height: 5px;
+    left: 70%; top: 30%;
+    animation-duration: 18s;
+    animation-delay: 4s;
+}
+.particle-4 {
+    width: 3px; height: 3px;
+    left: 85%; top: 70%;
+    animation-duration: 14s;
+    animation-delay: 1s;
+    background: var(--color-accent-gold);
+}
+.particle-5 {
+    width: 4px; height: 4px;
+    left: 50%; top: 15%;
+    animation-duration: 16s;
+    animation-delay: 3s;
+}
+.particle-6 {
+    width: 2px; height: 2px;
+    left: 35%; top: 80%;
+    animation-duration: 13s;
+    animation-delay: 5s;
+    background: var(--color-white);
+}
+.particle-7 {
+    width: 3px; height: 3px;
+    left: 60%; top: 55%;
+    animation-duration: 17s;
+    animation-delay: 2.5s;
+    background: var(--color-accent-gold);
+}
+.particle-8 {
+    width: 4px; height: 4px;
+    left: 90%; top: 40%;
+    animation-duration: 11s;
+    animation-delay: 6s;
+}
+
+@keyframes floatParticle {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0) scale(0);
+    }
+    10% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.5;
+        transform: translateY(-120px) translateX(40px) scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150px) translateX(50px) scale(0);
+    }
+}
+
+/* ============================================
+   DECORATIVE LINES
+   ============================================ */
+.deco-line {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.deco-line-left {
+    left: 40px;
+    top: 15%;
+    bottom: 15%;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--color-white-15) 30%,
+        var(--color-accent) 50%,
+        var(--color-white-15) 70%,
+        transparent 100%
+    );
+    opacity: 0.4;
+}
+
+.deco-line-right {
+    right: 40px;
+    top: 15%;
+    bottom: 15%;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--color-white-15) 30%,
+        var(--color-accent) 50%,
+        var(--color-white-15) 70%,
+        transparent 100%
+    );
+    opacity: 0.4;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 820px;
+    padding: 40px 32px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.hero-content.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   EYEBROW / BADGE
+   ============================================ */
+.eyebrow-wrapper {
+    margin-bottom: 24px;
+    animation: fadeSlideDown 0.6s ease-out 0.2s both;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 24px;
+    border: 1px solid var(--color-white-15);
+    border-radius: var(--border-radius-full);
+    background: var(--color-white-04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.eyebrow-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-white-80);
+}
+
+/* ============================================
+   TITLE
+   ============================================ */
+.hero-title {
+    margin: 0 0 20px 0;
+    padding: 0;
+    line-height: 1.05;
+}
+
+.title-line {
+    display: block;
+}
+
+.title-line-1 {
+    font-size: 68px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    color: var(--color-white);
+    animation: fadeSlideDown 0.7s ease-out 0.35s both;
+}
+
+.title-line-2 {
+    font-size: 76px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: var(--color-white);
+    background: linear-gradient(
+        135deg,
+        var(--color-white) 0%,
+        var(--color-accent-light) 50%,
+        var(--color-accent-gold) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeSlideDown 0.7s ease-out 0.5s both;
+}
+
+@keyframes fadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   DESCRIPTION
+   ============================================ */
+.hero-description {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-white-60);
+    max-width: 580px;
+    margin: 0 auto 40px auto;
+    animation: fadeSlideDown 0.7s ease-out 0.65s both;
+}
+
+/* ============================================
+   CTA BUTTONS
+   ============================================ */
+.hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation: fadeSlideDown 0.7s ease-out 0.8s both;
+}
+
+.btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-display);
+    overflow: hidden;
+    border-radius: var(--border-radius-full);
+    transition: all var(--transition-smooth);
+}
+
+.btn-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+}
+
+.btn-text {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    transition: transform var(--transition-smooth);
+}
+
+.btn-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #c0392b 100%);
+    color: var(--color-white);
+    box-shadow:
+        0 4px 15px var(--color-accent-glow),
+        0 0 0 0 var(--color-accent-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 30px var(--color-accent-glow),
+        0 0 0 4px rgba(230, 57, 70, 0.15);
+}
+
+.btn-primary:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+/* Shimmer effect */
+.btn-shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 100%
+    );
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: var(--color-white-04);
+    color: var(--color-white);
+    border: 1px solid var(--color-white-15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    background: var(--color-white-08);
+    border-color: var(--color-white-40);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary:hover .btn-icon {
+    transform: scale(1.1);
+}
+
+.btn-secondary:active {
+    transform: translateY(-1px);
+}
+
+/* ============================================
+   TRUST BAR
+   ============================================ */
+.trust-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-white-08);
+    animation: fadeSlideDown 0.7s ease-out 1s both;
+    flex-wrap: wrap;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.trust-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+}
+
+.trust-text {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--color-white-40);
+    white-space: nowrap;
+}
+
+.trust-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--color-white-15);
+}
+
+/* ============================================
+   SCROLL INDICATOR
+   ============================================ */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    animation: fadeSlideDown 0.7s ease-out 1.2s both;
+    transition: opacity var(--transition-smooth);
+}
+
+.scroll-indicator:hover {
+    opacity: 0.7;
+}
+
+.scroll-text {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-white-40);
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--color-white-15);
+    position: relative;
+    overflow: hidden;
+    border-radius: 1px;
+}
+
+.scroll-dot {
+    width: 3px;
+    height: 8px;
+    background: var(--color-accent);
+    border-radius: 2px;
+    position: absolute;
+    left: -1px;
+    top: -8px;
+    animation: scrollDown 2s ease-in-out infinite;
+    box-shadow: 0 0 6px var(--color-accent-glow);
+}
+
+@keyframes scrollDown {
+    0% {
+        top: -8px;
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        top: 40px;
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   RESPONSIVE — TABLET
+   ============================================ */
+@media (max-width: 1024px) {
+    .title-line-1 {
+        font-size: 52px;
+    }
+    .title-line-2 {
+        font-size: 58px;
+    }
+    .hero-description {
+        font-size: 16px;
+    }
+    .deco-line-left,
+    .deco-line-right {
+        display: none;
+    }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .hero-banner {
+        min-height: 85vh !important;
+    }
+
+    .hero-content {
+        padding: 32px 20px;
+    }
+
+    .title-line-1 {
+        font-size: 36px;
+        font-weight: 400;
+    }
+
+    .title-line-2 {
+        font-size: 42px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 32px;
+    }
+
+    .eyebrow-text {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .btn-content {
+        justify-content: center;
+        padding: 14px 32px;
+    }
+
+    .trust-bar {
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 36px;
+        padding-top: 24px;
+    }
+
+    .trust-divider {
+        display: none;
+    }
+
+    .scroll-indicator {
+        bottom: 24px;
+    }
+
+    .particles-container {
+        display: none;
+    }
+}
+
+/* ============================================
+   RESPONSIVE — SMALL MOBILE
+   ============================================ */
+@media (max-width: 480px) {
+    .hero-banner {
+        min-height: 80vh !important;
+    }
+
+    .title-line-1 {
+        font-size: 28px;
+    }
+
+    .title-line-2 {
+        font-size: 34px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .btn-text {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+    }
+}
+
+/* ============================================
+   PREFERS REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg {
+        animation: none;
+        transform: scale(1);
+    }
+    .particle {
+        animation: none;
+    }
+    .btn-shimmer {
+        animation: none;
+    }
+    .scroll-dot {
+        animation: none;
+    }
+    .eyebrow-dot {
+        animation: none;
+    }
+    .hero-content {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .eyebrow-wrapper,
+    .title-line-1,
+    .title-line-2,
+    .hero-description,
+    .hero-actions,
+    .trust-bar,
+    .scroll-indicator {
+        animation: none;
+    }
+}
