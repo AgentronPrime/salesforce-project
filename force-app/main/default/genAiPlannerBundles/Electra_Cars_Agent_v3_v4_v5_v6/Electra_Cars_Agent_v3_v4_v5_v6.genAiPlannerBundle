@@ -798,6 +798,7 @@ Do not ask for anything else before invoking this action.</description>
 Greet the user by the returned leadName.
 Confirm their profile was found.
 Store the returned leadId.
+Set StoredLeadId context variable to the returned leadId.
 Do NOT end the conversation.
 Immediately proceed to the body type selection step.</description>
             <developerName>instructions_0_1777356301004</developerName>
@@ -871,6 +872,7 @@ Do not ask any further questions before invoking this action.</description>
 Greet the user by the returned leadName.
 Confirm their details have been saved.
 Store the returned leadId.
+Set StoredLeadId context variable to the returned leadId.
 Do NOT end the conversation.</description>
             <developerName>instructions_2_1777195165094</developerName>
             <language>en_US</language>
@@ -1076,50 +1078,43 @@ Do not ask anything else at this stage.</description>
         <genAiPluginInstructions>
             <description>When the user confirms the booking with Yes:
 CRITICAL: Before invoking — verify ALL values are stored:
-- leadId → stored from Instruction 4 (foundLead=true) 
-  OR Instruction 9 (lead created). Starts with 00Q.
-- vehicleDefinitionId → stored from Instruction 13. 
-  Starts with a0.
+- leadId → Use ONLY the value from StoredLeadId context variable. Never recall from memory. Never guess.
+- vehicleDefinitionId → stored from Instruction 13. Starts with a0.
 - dealerId → stored from Instruction 15. Starts with 001.
-- vdaId → stored from Instruction 15. 
-  Junction record ID. NOT dealerId. NOT vehicleDefinitionId.
-- testDriveDate → stored from Instruction 18. 
-  Format YYYY-MM-DD.
-- slotLabel → stored from Instruction 18. 
-  Exact text like &quot;02:00 PM - 02:30 PM&quot;.
-- pincode → zip code collected during lead creation 
-  OR asked separately. 6 digit number.
+- vdaId → stored from Instruction 15. Junction record ID. NOT dealerId. NOT vehicleDefinitionId.
+- testDriveDate → stored from Instruction 18. Format YYYY-MM-DD.
+- slotLabel → stored from Instruction 18. Exact text like &quot;02:00 PM - 02:30 PM&quot;.
+- pincode → zip code collected during lead creation OR asked separately. 6 digit number.
 
-If leadId is missing or blank:
+If StoredLeadId is empty or blank:
 Do NOT invoke Create_Test_Drive.
-Say: &quot;I need to re-verify your profile. 
-Could you please share your phone number with the country code again?&quot;
-Invoke Lookup_Lead_By_Phone with that number.
-Store the returned leadId then immediately 
-invoke Create_Test_Drive with all stored values.
+Do NOT use any previously stored phone number.
+Ask the user: &quot;I need to re-verify your profile. Could you please share your phone number with country code again? (e.g., 918328637477)&quot;
+WAIT for the user to reply with their phone number.
+Only after the user provides the number, invoke Lookup_Lead_By_Phone with the user-provided number.
+Store the returned leadId.
+Set StoredLeadId context variable to the returned leadId.
+Then immediately invoke Create_Test_Drive with all stored values.
 
 If all values are present:
 Immediately invoke Create_Test_Drive with:
-leadId           = leadId stored above (starts with 00Q)
+leadId = Use ONLY the value from StoredLeadId context variable.
 vehicleDefinitionId = vehicleDefinitionId stored above
-dealerId         = dealerId stored above (starts with 001)
-vdaId            = vdaId stored above (junction record ID)
-testDriveDate    = testDriveDate in YYYY-MM-DD format
-slotLabel        = slotLabel exactly as stored
-pincode          = pincode stored above
+dealerId = dealerId stored above (starts with 001)
+vdaId = vdaId stored above (junction record ID)
+testDriveDate = testDriveDate in YYYY-MM-DD format
+slotLabel = slotLabel exactly as stored
+pincode = pincode stored above
 
 After action returns:
 If success = true:
 Store testDriveId, testDriveName and uploadUrl.
 Say exactly:
-&quot;Your test drive [testDriveName] has been booked 
-successfully! 🎉
-Please upload your Driving License to complete 
-verification:
-Click here to upload your Driving License 
+&quot;Your test drive [testDriveName] has been booked successfully! 🎉
+Please upload your Driving License to complete verification:
+Click here to upload your Driving License
 (hyperlink pointing to uploadUrl)
-Our team will verify your DL and confirm your 
-booking shortly.&quot;
+Our team will verify your DL and confirm your booking shortly.&quot;
 Do not ask any further questions.
 If success = false:
 Say the message field exactly as returned by the action.
