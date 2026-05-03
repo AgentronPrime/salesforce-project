@@ -1,0 +1,56 @@
+{
+  "required" : [ "dealerId", "leadId", "pincode", "slotLabel", "testDriveDate", "vdaId", "vehicleDefinitionId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "dealerId" : {
+      "title" : "dealerId",
+      "description" : "The Salesforce Account ID of the dealer starting \nwith 001. Stored from Instruction 15.\nNEVER pass vdaId here. NEVER pass vehicleDefinitionId here.\nMust start with 001.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "leadId" : {
+      "title" : "leadId",
+      "description" : "The Salesforce Lead ID starting with 00Q. \nStored from Lookup_Lead_By_Phone or \nCreate_Lead_From_Phone_And_Name response.\nNEVER pass pincode here. NEVER pass a number here.\nMust start with 00Q.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "pincode" : {
+      "title" : "pincode",
+      "description" : "The 5 or 6 digit zip code collected from user \nduring lead creation or explicitly asked.\nExample: 84060 or 400001.\nNEVER pass leadId here. This is a zip code only.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "slotLabel" : {
+      "title" : "slotLabel",
+      "description" : "The exact time slot selected by the user e.g. 10:00 AM - 10:30 AM. Must match exactly as returned by Fetch Available Time Slots action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "testDriveDate" : {
+      "title" : "testDriveDate",
+      "description" : "The date selected by the user for the test drive in YYYY-MM-DD format.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "vdaId" : {
+      "title" : "vdaId",
+      "description" : "The VehicleDef_Dealer junction record ID.\nStored from Fetch_Dealers_By_Vehicle_And_Pincode \nresponse as Part 3 of dealerIdMap.\nNEVER pass dealerId here. NEVER pass vehicleDefinitionId here.\nThis is different from dealerId and vehicleDefinitionId.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "vehicleDefinitionId" : {
+      "title" : "vehicleDefinitionId",
+      "description" : "The Salesforce ID of the Vehicle Definition selected by the user. Comes from the vehicleList parsed earlier.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,33 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "message" : {
+      "title" : "message",
+      "description" : "Status message. If no slots available it will say so and the agent should ask the user to pick another date.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "slotList" : {
+      "title" : "slotList",
+      "description" : "All available time slots in pipe-delimited format: 1|10:00 AM - 10:30 AM,2|10:30 AM - 11:00 AM. Parse by splitting on comma then pipe. Position 1 is slot number, position 2 is the exact slot label to store and pass to Create Test Drive.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalCount" : {
+      "title" : "totalCount",
+      "description" : "Total number of available time slots for the selected dealer and date.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

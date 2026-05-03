@@ -1,0 +1,49 @@
+{
+  "required" : [ "Input:Type" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:TestDriveId" : {
+      "title" : "TestDriveId",
+      "description" : "The Salesforce ID of the test drive record. \nPass this when Type is TestDrive. \nLeave empty for other types.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Input:Vehicle_Model_Number" : {
+      "title" : "Vehicle Model Number",
+      "description" : "The model number of the vehicle. \nPass this when Type is Vehicle. \nLeave empty for other types.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Input:Type" : {
+      "title" : "Type",
+      "description" : "The type of review summary to generate. \nPass Dealer for dealer reviews. \nPass Vehicle for vehicle reviews. \nPass TestDrive for test drive reviews.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Input:AccountId" : {
+      "title" : "AccountId",
+      "description" : "The Salesforce Account ID of the dealer. \nPass this when Type is Dealer. \nLeave empty for other types.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "citationMode" : {
+      "title" : "Citation Mode",
+      "description" : "Select Citation Mode",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "isPreviewOnly" : {
+      "title" : "Preview Only",
+      "description" : "Resolves the prompt template without generating an LLM response.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

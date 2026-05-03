@@ -1,0 +1,20 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "bodyType" : {
+      "title" : "bodyType",
+      "description" : "Optional body type filter. Pass Hatchback, Sedan, \nSUV, or Electric to filter vehicles by type. \nPass ALL or leave blank to return all vehicles.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "dummy" : {
+      "title" : "dummy",
+      "description" : "Not required. Leave empty. This is a placeholder \ninput required by Agentforce.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,56 @@
+{
+  "required" : [ "dealerId", "leadId", "slotLabel", "testDriveDate", "vdaId", "vehicleDefinitionId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "dealerId" : {
+      "title" : "dealerId",
+      "description" : "The Salesforce Account ID of the selected dealer. This comes from position 3 of the dealerList. This is different from vdaId.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "leadId" : {
+      "title" : "leadId",
+      "description" : "The Salesforce ID of the lead or contact. Returned by Lookup Lead By Phone or Create Lead action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "pincode" : {
+      "title" : "pincode",
+      "description" : "The pincode entered by the user during the booking flow.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "slotLabel" : {
+      "title" : "slotLabel",
+      "description" : "The exact time slot selected by the user e.g. 10:00 AM - 10:30 AM. Must match exactly as returned by Fetch Available Time Slots action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "testDriveDate" : {
+      "title" : "testDriveDate",
+      "description" : "The date selected by the user for the test drive in YYYY-MM-DD format.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "vdaId" : {
+      "title" : "vdaId",
+      "description" : "The Salesforce ID of the VehicleDef_Dealer junction record. This comes from position 4 of the dealerList. This is different from dealerId.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "vehicleDefinitionId" : {
+      "title" : "vehicleDefinitionId",
+      "description" : "The Salesforce ID of the Vehicle Definition selected by the user. Comes from the vehicleList parsed earlier.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

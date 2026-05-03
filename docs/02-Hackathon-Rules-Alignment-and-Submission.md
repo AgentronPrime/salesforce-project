@@ -58,13 +58,36 @@ Highlight:
 
 ## 3. Suggested “further improvements” (submission text / video)
 
-Use only items you can honestly build next:
+Use items your team can **honestly** deliver next. Below is an **expanded** list you can paste or trim for the hackathon form (mix **product** ideas with **engineering** quality).
 
-1. **Higher automated test coverage** for all `Electra*` invocable actions and bulk trigger paths.  
-2. **Centralized configuration** for template names and channel IDs (Custom Metadata Types) instead of literals in Apex samples.  
-3. **Einstein / Data Cloud–powered** next-best-dealer or slot recommendations using calculated insights (beyond ingest).  
-4. **Observability dashboard** (event logging to `Webhook_Log__c` or Platform Events) for conversation drop-off analytics.  
-5. **Experience Cloud** hardening and guest/unauthenticated policy review if the site is customer-facing.
+### 3.1 Already on your roadmap (from team)
+
+1. **Geolocation-assisted pincode (ZIP)** — On the **Experience site**, use the browser **Geolocation API** (with clear **consent** and fallback to manual entry) to suggest or pre-fill **postal code** for dealer matching, reducing typing errors and drop-off. Optionally pair with a **geocoding** service (authorized, rate-limited) for reverse lookup where policy allows.  
+2. **Voice channel fully aligned with the main agent** — **Service Cloud Voice** / voice routing flows (`voice_agent_route`, `Service_Agent_Route_to_Work`) and Omni metadata exist in the project; in the org, voice was **enabled and validated on a test agent**, but **not showcased** end-to-end and **not fully wired to the same production Agentforce definition** as WhatsApp/web due to **time constraints**. Next step: **one published agent** across **WhatsApp, web, and voice** with a demo script and test numbers.  
+3. **Auto-capture WhatsApp phone number (context-first)** — For **WhatsApp**, pass **`MessagingEndUser`** / session context into the agent so the **customer’s number is read from the channel** instead of asking “what is your phone number?” again. Keep **explicit collection** only on the **website** channel (or when context is missing) so **dual-channel** behavior stays correct and privacy-safe.
+
+### 3.2 Product and UX
+
+4. **Progressive disclosure** — Short “quick replies” or numbered choices in text for common paths (book vs reschedule) while keeping **no LWC-in-agent** constraint for WhatsApp.  
+5. **Multilingual templates and agent topics** — Align `EndUserLanguage` on `MessagingSession` with translated **Meta templates** and localized plugin copy.  
+6. **DL verification SLA dashboard** — Supervisor view of queue age for **Verification_Queue** vs **Test_Drive_Requests_Queue** with alerts.  
+7. **No-show and reschedule prediction** — Use **Data Cloud** calculated insights + history on `Test_Drive__c` to nudge confirmation or offer alternate slots.
+
+### 3.3 Platform, data, and reliability
+
+8. **Higher automated test coverage** — Apex tests for every **`Electra*`** invocable, `TestDriveTriggerHandler` bulk scenarios, and `AgentWorkTriggerHandler` edge cases (PSR deleted before resolve).  
+9. **Centralized configuration** — Custom Metadata Types for **template API names**, channel ids, and feature flags (replace literals in samples and reduce deploy drift).  
+10. **Observability** — Platform Events or structured logging to **`Webhook_Log__c`** for conversation milestones (started booking, abandoned at dealer step, DL failed).  
+11. **Data Cloud beyond ingest** — Identity resolution (Lead ↔ Contact ↔ Messaging End User), **activations** (Journey Builder / re-engagement), and **retrieval-augmented** prompts where licensed.  
+12. **Security hardening** — Guest Experience **CSP** review, PII minimization on `WhatsApp_Message__c`, rotate any legacy webhook verify patterns out of source if reused.
+
+### 3.4 Operations and compliance
+
+13. **Runbook for Meta / DE changes** — Document template version bumps, WABA number changes, and regression prompts after each change.  
+14. **Capacity and staffing models** — Tune Omni **presence** and **routing priority** tiers using production volume, not demo defaults.
+
+**Short paragraph for the form (example):**  
+*“With more time we would (a) use browser geolocation with consent to improve pincode capture on the site, (b) unify voice with the same Agentforce agent we use for WhatsApp and web and include it in the demo, (c) bind WhatsApp sessions to the customer’s phone from Messaging context to avoid redundant questions, and (d) deepen tests, metadata-driven config, and Data Cloud insights for no-shows and SLAs.”*
 
 ---
 

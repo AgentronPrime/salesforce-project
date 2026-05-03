@@ -1,0 +1,51 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "dealerDisplayList" : {
+      "title" : "dealerDisplayList",
+      "description" : "Clean numbered list of dealers with city and state on separate lines. Display this exactly as returned to the user without any modification or reformatting.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "dealerIdMap" : {
+      "title" : "dealerIdMap",
+      "description" : "Number to IDs mapping in format\n1##dealerId##vdaId||2##dealerId##vdaId.\nSplit on || to get entries then split each\nentry on ## to get:\nPart 1 = number\nPart 2 = dealerId (Account ID starts with 001)\nPart 3 = vdaId (VehicleDef_Dealer junction record ID)\nStore both silently. Never show to user.\nCRITICAL: Part 2 is ALWAYS dealerId.\nPart 3 is ALWAYS vdaId. Never mix them up.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "message",
+      "description" : "Status message indicating whether dealers were found near pincode or all dealers are being shown.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "pincodeMatched" : {
+      "title" : "pincodeMatched",
+      "description" : "True if dealers were found matching the user pincode exactly. False if showing all available dealers because no pincode match was found.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalCount" : {
+      "title" : "totalCount",
+      "description" : "Total number of dealers found for this vehicle and pincode combination.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

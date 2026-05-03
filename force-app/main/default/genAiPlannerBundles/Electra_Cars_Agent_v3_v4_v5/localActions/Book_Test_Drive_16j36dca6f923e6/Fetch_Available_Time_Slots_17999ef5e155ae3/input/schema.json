@@ -1,0 +1,21 @@
+{
+  "required" : [ "dealerId", "selectedDate" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "dealerId" : {
+      "title" : "dealerId",
+      "description" : "The Salesforce Account ID of the selected dealer. This comes from position 3 of the dealerList parsed in the previous step. Do not pass vdaId here.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "selectedDate" : {
+      "title" : "selectedDate",
+      "description" : "The date selected by the user for the test drive in YYYY-MM-DD format. Convert the user selected date to this format before passing.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

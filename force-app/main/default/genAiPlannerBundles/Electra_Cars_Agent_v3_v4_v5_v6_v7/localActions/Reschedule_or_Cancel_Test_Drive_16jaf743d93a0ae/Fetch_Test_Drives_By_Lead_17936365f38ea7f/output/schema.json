@@ -1,0 +1,42 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "displayList" : {
+      "title" : "displayList",
+      "description" : "Numbered list of test drives to show to customer. \nDisplay exactly as returned. Do not modify.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "idMap" : {
+      "title" : "idMap",
+      "description" : "Split on || then ## to get:\nPart 1 = number\nPart 2 = testDriveId (starts with a0)\nPart 3 = dealerId (starts with 001)\nPart 4 = vehicleId\nStore silently. Never show to user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "message",
+      "description" : "Display this to user when totalCount = 0.\nContains friendly explanation of why no \ntest drives were found based on context passed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalCount" : {
+      "title" : "totalCount",
+      "description" : "Total number of test drives returned.\nIf 0 — display message field to user and do not proceed.\nIf greater than 0 — display displayList to user.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

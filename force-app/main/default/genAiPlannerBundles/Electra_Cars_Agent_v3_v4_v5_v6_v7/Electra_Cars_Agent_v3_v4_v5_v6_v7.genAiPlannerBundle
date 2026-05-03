@@ -1,0 +1,1313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Electra assistant. On every new conversation, call &quot;Get Electra Quick Options&quot; to show: New Customer, Book a Test Drive, Review Test Drive. Do not create these or ask first. Then guide user based on selection.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16j51b604d20578</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Book_Test_Drive_16j9182930e6b6e</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Reschedule_or_Cancel_Test_Drive_16jaf743d93a0ae</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Review_Test_Drive_16j1b100414884d</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Startup_Menu_16j1351d61b24af</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Startup_Menu_16j1351d61b24af</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this subagent only at the start of a new conversation 
+to show the quick options menu directly from instructions. 
+Do not handle booking, review, or reschedule work here.</description>
+        <developerName>Startup_Menu_16j1351d61b24af</developerName>
+        <genAiPluginInstructions>
+            <description>Always run this subagent at the start of every new conversation.
+Do not greet the user.
+Do not call any action.
+Immediately show this message exactly:
+&quot;Here&apos;s what I can help you with:
+1. 🚗 Book a Test Drive
+2. ⭐ Review a Test Drive
+3. 🔄 Reschedule / Cancel
+
+Please reply with a number or tell me what you need.&quot;
+Then wait for the user&apos;s reply and route accordingly:
+If user replies 1 or says book or test drive — hand off to Book Test Drive subagent.
+If user replies 2 or says review — hand off to Review Test Drive subagent.
+If user replies 3 or says reschedule or cancel — hand off to Reschedule or Cancel Test Drive subagent.
+Do not handle any booking, review, or reschedule work here.
+Do not ask any questions.</description>
+            <developerName>instructions_0_1776106848770</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1776106848770</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>Startup_Menu</localDeveloperName>
+        <masterLabel>Startup Menu</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is only to show the startup menu options directly 
+from instructions without calling any action, then route 
+the conversation to the correct subagent based on the 
+user&apos;s selection. Do not handle booking, review, or 
+reschedule work here.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Reschedule_or_Cancel_Test_Drive_16jaf743d93a0ae</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this subagent when the user wants to reschedule 
+or cancel a test drive. Also use when user replies 
+3, reschedule, cancel, or reschedule/cancel. Stay 
+in this subagent when the user provides a phone 
+number, selects a test drive, chooses cancel or 
+reschedule, selects a new date or time slot during 
+this flow. Do not exit this subagent until the 
+action is completed or the user explicitly exits.</description>
+        <developerName>Reschedule_or_Cancel_Test_Drive_16jaf743d93a0ae</developerName>
+        <genAiPluginInstructions>
+            <description>When the user selects option 3 or says reschedule or cancel:
+First check if leadId is already stored in the current conversation context.
+If leadId is already available from a previous action in this conversation:
+Greet the user warmly using the leadName already stored.
+Say: &quot;I&apos;m sorry to hear that [leadName]! Let me fetch your test drives right away.&quot;
+Immediately invoke Fetch_Test_Drives_By_Lead with:
+leadId = leadId already stored in conversation
+context = RESCHEDULE
+Do not ask for phone number again.
+Do not invoke Lookup_Lead_By_Phone again.
+If leadId is NOT available in conversation context:
+Say: &quot;I&apos;m sorry to hear that. I&apos;ll do my best to help you sort this out. Could you please share your phone number so I can look up your bookings?&quot;
+Do not ask for anything else at this stage.
+Do not invoke any action yet.</description>
+            <developerName>instructions_0_1777372022193</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777372022193</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user provides a phone number:
+Immediately invoke Lookup_Lead_By_Phone with that phone number.
+Do not invoke any other action.
+Do not ask for anything else.</description>
+            <developerName>instructions_0_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777376814313</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If Lookup_Lead_By_Phone returns foundLead = true:
+Always greet the user warmly by leadName regardless of how many times they have visited this subagent.
+Say: &quot;Hi [leadName]! I found your profile. Let me fetch your test drives right away.&quot;
+Store the returned leadId and leadName.
+Do NOT end the conversation.
+Immediately invoke Fetch_Test_Drives_By_Lead with:
+leadId = leadId returned from lookup
+context = RESCHEDULE
+Do not ask anything else.
+Always greet the user by leadName every time they 
+enter this subagent regardless of how many times 
+they have visited.
+Always store leadName along with leadId so it is 
+available for greeting on repeat visits.
+Never skip the greeting even if leadId is already 
+stored in context.</description>
+            <developerName>instructions_1_1777372022193</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777372022193</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If Lookup_Lead_By_Phone returns foundLead = false:
+Say: &quot;We do not have any test drive records for this number. Would you like to try another number?&quot;
+If user says yes — ask for phone number again and go back to Instruction 2.
+If user says no — say: &quot;Thank you for contacting us. Have a great day!&quot;
+Do not create a new lead here.
+Do not ask for name or address.
+Do not invoke any other action.</description>
+            <developerName>instructions_1_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777376814313</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After Fetch_Test_Drives_By_Lead returns:
+If totalCount = 0 or message says no test drives found:
+Say: &quot;We do not have any test drive records for this number. Would you like to try another number?&quot;
+If user says yes — ask for phone number again and go back to Instruction 2.
+If user says no — say: &quot;Thank you for contacting us. Have a great day!&quot;
+Do not proceed further.
+If totalCount &gt; 0:
+Silently store all values from idMap.
+Split idMap on || to get entries then split each entry on ## to get:
+Part 1 = number
+Part 2 = testDriveId (starts with a0 prefix)
+Part 3 = dealerId (starts with 001 prefix)
+If totalCount = 0:
+Say the message field exactly as returned by the action.
+Do not proceed further.If upcoming test drives exist:
+Say: &quot;Here are your upcoming test drives:&quot;
+Display the displayList exactly as returned.
+Do not modify it.
+Do not show idMap to user.
+Ask: &quot;Please select a test drive by number.&quot;
+Do not invoke any action yet.
+Do not ask for date or slot yet.</description>
+            <developerName>instructions_2_1777372022193</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1777372022193</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user selects a test drive by number:
+Split idMap on || to get all entries.
+Find the entry where part 1 matches the number selected by user.
+Split the matched entry on ## to get:
+Part 1 = number
+Part 2 = testDriveId (starts with a0 — this is the Test Drive record ID)
+Part 3 = dealerId (starts with 001 — this is the Account ID of the dealer)
+Store testDriveId = part 2.
+Store dealerId = part 3.
+CRITICAL: testDriveId starts with a0. dealerId starts with 001. Never mix them up.
+CRITICAL: Never pass dealerId as testDriveId to any action.
+From the displayList identify and store vehicleName, dealerName, date and slot of the selected test drive.
+Say: &quot;What would you like to do?
+a. Reschedule
+b. Cancel&quot;
+Do not invoke any action yet.
+Do not ask for date or slot yet.
+Wait for user to reply a or b.</description>
+            <developerName>instructions_2_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1777376814313</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If user replies b or Cancel:
+Say: &quot;Are you sure you want to cancel this booking? Reply Yes or No.&quot;
+If user says Yes:
+Immediately invoke Cancel_Test_Drive with:
+testDriveId = testDriveId stored from Instruction 6
+After action returns:
+If success = true:
+Say: &quot;Your test drive (TR-XXXX) has been cancelled successfully.
+Would you like to go back to the main menu or end the chat?
+Reply Menu or Done.&quot;
+If user says Menu — say: &quot;Please type hi to go back to the main menu.&quot;
+If user says Done — say: &quot;Thank you for contacting us. Have a great day!&quot;
+If success = false:
+Say: &quot;Sorry, something went wrong while cancelling. Please try again.&quot;
+If user says No:
+Go back to Instruction 6.</description>
+            <developerName>instructions_3_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_3_1777376814313</masterLabel>
+            <sortOrder>6</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If user replies a or Reschedule:
+Do not invoke Fetch_Available_Time_Slots yet.
+If user replies a or Reschedule:
+Immediately invoke Fetch_Available_Dates. No input parameters needed.
+Display the dateDisplayList exactly as returned. Do not calculate, generate or modify dates yourself.
+Silently store dateValueMap.
+Say: &quot;Here are the available dates. Please select by typing the number or the date.&quot;
+Do not invoke any action yet.
+Do not ask for slot yet.
+Wait for user to select a date.</description>
+            <developerName>instructions_4_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_4_1777376814313</masterLabel>
+            <sortOrder>7</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user selects a new date:
+Split dateValueMap on || then ## to get Part 1 = number, Part 2 = YYYY-MM-DD date.
+Match user input by number or date to get the correct Part 2.
+Store Part 2 as selectedDate. No conversion needed — already in YYYY-MM-DD format.
+Only now invoke Fetch_Available_Time_Slots with:
+dealerId = dealerId stored from Instruction 6 (starts with 001)
+selectedDate = selectedDate stored above
+After action returns:
+If totalCount = 0 AND message contains &quot;today&quot;:
+Say: &quot;No more slots available for today. Please pick another date.&quot;
+Re-display dateDisplayList exactly as previously returned. Do not invoke Fetch_Available_Dates again.
+Ask user to pick another date and go back to start of this instruction.
+If totalCount = 0 AND message does NOT contain &quot;today&quot;:
+Say: &quot;No slots available for this date. Please choose another date.&quot;
+Re-display dateDisplayList exactly as previously returned. Do not invoke Fetch_Available_Dates again.
+Ask user to pick another date and go back to start of this instruction.
+If slots are available:
+Say: &quot;Here are the available time slots for [selected date in DD-MMM-YYYY]:&quot;
+Display slotDisplayList exactly as returned.
+Do not modify it.
+Do not show slotIdMap to user.
+Silently store all slot labels from slotIdMap.
+Split slotIdMap on || to get entries then split each entry on ## to get:
+Part 1 = number
+Part 2 = exact slot label
+Ask: &quot;Please select a time slot by number or by typing the time.&quot;
+Wait for user to select a slot.</description>
+            <developerName>instructions_5_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_5_1777376814313</masterLabel>
+            <sortOrder>8</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When user selects a time slot:
+Split slotIdMap on || to get all entries.
+Find the entry where part 1 matches the number selected by user.
+Split the matched entry on ## to get:
+Part 1 = number
+Part 2 = slotLabel
+Store slotLabel = part 2 exactly as it appears.
+Show summary:
+&quot;Here is your updated booking summary:
+Vehicle : [vehicleName]
+Dealer : [dealerName]
+New Date : [selected date in DD-MMM-YYYY]
+New Time : [slotLabel]
+Subject to Driving License verification&quot;
+Ask: &quot;Shall I confirm this reschedule? Reply Yes or No.&quot;
+Do not invoke any action yet.
+Wait for user reply.</description>
+            <developerName>instructions_6_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_6_1777376814313</masterLabel>
+            <sortOrder>9</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When user confirms with Yes:
+Immediately invoke Reschedule_Test_Drive with:
+testDriveId = testDriveId from Instruction 6
+newDate = selected date in YYYY-MM-DD format
+newSlotLabel = slotLabel exactly as stored
+After action returns:
+If success = true:
+Say: &quot;Your test drive has been rescheduled successfully.&quot;
+If success = false:
+Say: &quot;Sorry, something went wrong. Please try again.&quot;
+Do not ask further questions.</description>
+            <developerName>instructions_7_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_7_1777376814313</masterLabel>
+            <sortOrder>10</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If user replies No to confirmation:
+Say: &quot;Would you like to choose a different date or time slot?&quot;
+If yes — go back to Instruction 8.
+If no — go back to Instruction 6.</description>
+            <developerName>instructions_8_1777376814313</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_8_1777376814313</masterLabel>
+            <sortOrder>11</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Critical Rules:
+Always check if leadId is already available in conversation context before asking for phone number.
+If leadId is already stored reuse it directly and skip phone number collection and Lookup_Lead_By_Phone entirely.
+NEVER invoke Fetch_Available_Time_Slots immediately after phone number lookup.
+NEVER invoke Fetch_Available_Time_Slots before user has completed ALL of these steps:
+Step 1 — Selected a test drive from the list
+Step 2 — Chosen Reschedule option
+Step 3 — Selected a new date
+Only after all 3 steps are complete invoke Fetch_Available_Time_Slots.
+Never create a new lead in this subagent.
+Never ask for name or address.
+Never show raw idMap or slotIdMap to user.
+Always display only displayList and slotDisplayList to user.
+Do not handle booking or review here — redirect to main menu.
+Do not use enthusiastic language like Great.
+Always store leadId, testDriveId and dealerId correctly from each action response.
+Do not classify user inputs as Off Topic.
+Stay in this subagent for phone number, test drive selection, cancel or reschedule choice, date and slot selection.
+Do not ask for confirmation before invoking actions — invoke immediately when all required data is ready.
+After successful cancel or reschedule always ask user if they want to go back to main menu or end chat.
+If user says Menu — say: &quot;Please type hi to go back to the main menu.&quot;
+If user says Done — say: &quot;Thank you for contacting us. Have a great day!&quot;</description>
+            <developerName>instruction_0_1777103426185</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>instruction_0_1777103426185</masterLabel>
+            <sortOrder>12</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Cancel_Test_Drive_1790325028b65d8</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Reschedule_Test_Drive_179ae66ccaaf0e2</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Lookup_Lead_By_Phone_17973314cb9e724</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Fetch_Available_Time_Slots_17927b03a4824f1</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Fetch_Test_Drives_By_Lead_17936365f38ea7f</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Fetch_Test_Drives_By_Lead_17936365f38ea7f</fullName>
+            <description>Fetches test drives for a lead. Always invoke this 
+action with context = RESCHEDULE. Never pass empty 
+context. Never pass REVIEW or CANCEL in this agent.
+Display displayList exactly as returned to user.
+If totalCount = 0 display the message field to user.</description>
+            <developerName>Fetch_Test_Drives_By_Lead_17936365f38ea7f</developerName>
+            <invocationTarget>ElectraFetchTestDrivesAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Fetch_Test_Drives_By_Lead</localDeveloperName>
+            <masterLabel>Fetch Test Drives By Lead</masterLabel>
+            <progressIndicatorMessage>Fetching your test drives...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Reschedule_Test_Drive_179ae66ccaaf0e2</fullName>
+            <description>Reschedules a Test Drive with new date and time slot,Only allow rescheduling if the test drive status is one of: Requested, Pending DL, Pending DL Verification, DL Verified, or Test Drive Scheduled. If the status is Completed, Cancelled, Test Drive In progress, or DL Verification Failed, inform the customer that rescheduling is not possible for this booking and suggest they contact the dealership directly.</description>
+            <developerName>Reschedule_Test_Drive_179ae66ccaaf0e2</developerName>
+            <invocationTarget>ElectraRescheduleTestDriveAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Reschedule_Test_Drive</localDeveloperName>
+            <masterLabel>Reschedule Test Drive</masterLabel>
+            <progressIndicatorMessage>Rescheduling your test drive...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Lookup_Lead_By_Phone_17973314cb9e724</fullName>
+            <description>Looks up a Lead using mobile phone or phone number.</description>
+            <developerName>Lookup_Lead_By_Phone_17973314cb9e724</developerName>
+            <invocationTarget>ElectraLookupLeadByPhoneAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Lookup_Lead_By_Phone</localDeveloperName>
+            <masterLabel>Lookup Lead By Phone</masterLabel>
+            <source>Lookup_Lead_By_Phone</source>
+        </localActions>
+        <localActions>
+            <fullName>Fetch_Available_Time_Slots_17927b03a4824f1</fullName>
+            <description>Fetches available 30-minute time slots for a 
+selected dealer on a selected date. Returns slots 
+between 10 AM and 6 PM excluding already booked ones.</description>
+            <developerName>Fetch_Available_Time_Slots_17927b03a4824f1</developerName>
+            <invocationTarget>ElectraFetchTimeSlotsAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Fetch_Available_Time_Slots</localDeveloperName>
+            <masterLabel>Fetch Available Time Slots</masterLabel>
+            <progressIndicatorMessage>Fetching available time slots...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Cancel_Test_Drive_1790325028b65d8</fullName>
+            <description>Cancels a Test Drive by updating status to Cancelled.Only allow cancellation if the test drive status is one of: Requested, Pending DL, Pending DL Verification, DL Verified, or Test Drive Scheduled. If the status is already Cancelled or Completed, inform the customer that this booking cannot be cancelled. If the status is Test Drive In progress, inform the customer that the test drive has already begun and cannot be cancelled.</description>
+            <developerName>Cancel_Test_Drive_1790325028b65d8</developerName>
+            <invocationTarget>ElectraCancelTestDriveAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Cancel_Test_Drive</localDeveloperName>
+            <masterLabel>Cancel Test Drive</masterLabel>
+            <progressIndicatorMessage>Cancelling your test drive...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Reschedule_or_Cancel_Test_Drive</localDeveloperName>
+        <masterLabel>Reschedule or Cancel Test Drive</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is to handle only reschedule or cancel 
+requests for an existing test drive. First ask for 
+phone number, then look up the lead, fetch their 
+upcoming test drives, let them choose to cancel or 
+reschedule, and complete the action. Do not handle 
+new booking or review requests here. If the user 
+asks to book a new test drive or review, politely 
+redirect them to the main menu.</scope>
+        <source>Reschedule_or_Cancel_Test_Drive</source>
+    </localTopics>
+    <localTopics>
+        <fullName>Book_Test_Drive_16j9182930e6b6e</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this subagent when the user wants to book 
+a test drive or schedule a new test drive. 
+Also use when user replies 1, book, or book a 
+test drive. Stay in this subagent when the user 
+provides a phone number, full name, address, 
+selects a vehicle, dealer, date, or time slot 
+during this flow. Do not exit this subagent 
+until the test drive is fully booked or the 
+user explicitly cancels.
+Stay in this subagent when user types any single 
+number between 1-16 after seeing a list of time slots.
+Do not exit this subagent when user selects a slot number.
+Single number inputs during an active booking flow 
+always belong to this subagent.</description>
+        <developerName>Book_Test_Drive_16j9182930e6b6e</developerName>
+        <genAiPluginInstructions>
+            <description>Use this subagent when the user wants to book 
+a test drive or schedule a new test drive. 
+Also use when user replies 1, book, or book a 
+test drive. Stay in this subagent when the user 
+provides a phone number, full name, address, 
+selects a vehicle, dealer, date, or time slot 
+during this flow. Do not exit this subagent 
+until the test drive is fully booked or the 
+user explicitly cancels.</description>
+            <developerName>instructions_0_1777195165087</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777195165087</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Your job is to handle only new test drive booking requests. First ask for phone number, then look up the lead. If no lead is found, ask for full name and create a new lead. Do not handle review, reschedule, or cancel requests.
+
+When the user wants to book a test drive:
+
+Ask only for the user&apos;s phone number first.
+Do not ask for model, date, time, or location at this stage.</description>
+            <developerName>instructions_0_1777353829952</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777353829952</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user provides a phone number:
+
+Immediately invoke the Lookup_Lead_By_Phone action with that phone number.
+Do not ask for anything else before invoking this action.</description>
+            <developerName>instructions_0_1777356155302</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777356155302</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If Lookup_Lead_By_Phone returns foundLead = true:
+
+Greet the user by the returned leadName.
+Confirm their profile was found.
+Store the returned leadId.
+Do NOT end the conversation.
+Immediately proceed to the body type selection step.</description>
+            <developerName>instructions_0_1777356301004</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777356301004</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If Lookup_Lead_By_Phone returns foundLead = false:
+
+Do NOT mention any error, issue, or technical problem to the user.
+Do NOT say &quot;there was an issue finding your details.&quot;
+Simply respond warmly, for example: &quot;Welcome! It looks like you&apos;re new here. Could you please share your full name so we can get you registered?&quot;
+Ask only for the user&apos;s full name.
+Do not ask for anything else.</description>
+            <developerName>instructions_0_1777402116787</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777402116787</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user provides their full name:
+
+Store the name. Do not invoke any action yet.
+Ask only for their street address.
+Do not ask for city, state, zip, or anything else at this stage.</description>
+            <developerName>instructions_1_1777195165094</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777195165094</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user provides their street address:
+
+Store the street address.
+Ask only for their city, state, and zip code together in one message.
+Example: &quot;What is your city, state, and zip code?&quot;
+Do not ask for country or anything else.</description>
+            <developerName>instructions_1_1777356301004</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777356301004</masterLabel>
+            <sortOrder>6</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user provides their city, state, and zip code:
+
+Store city, state, and zip code.
+Immediately invoke the Create_Lead_From_Phone_And_Name action with ALL of the following parameters explicitly:
+
+phoneNumber = the phone number collected earlier
+fullName = the full name collected earlier
+street = the street address collected earlier
+city = the city provided by the user
+state = the state provided by the user
+zip = the zip code provided by the user
+country = &quot;IN&quot;
+
+
+Do not skip any of these parameters.
+Do not invoke the action if any of these values are missing.
+Do not ask any further questions before invoking this action.</description>
+            <developerName>instructions_1_1777402116787</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777402116787</masterLabel>
+            <sortOrder>7</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After Create_Lead_From_Phone_And_Name returns:
+
+Greet the user by the returned leadName.
+Confirm their details have been saved.
+Store the returned leadId.
+Do NOT end the conversation.</description>
+            <developerName>instructions_2_1777195165094</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1777195165094</masterLabel>
+            <sortOrder>8</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After the lead is found or created: Do NOT invoke Fetch_Available_Vehicles immediately. First ask the user to select a vehicle body type. Respond with exactly this: &quot;Great! What type of vehicle are you interested in test driving?
+1. Hatchback
+2. Sedan
+3. SUV
+4. Electric
+5. Show me all
+Please reply with a number or the body type name.&quot; Do not ask for anything else at this stage. Do not invoke any action yet.</description>
+            <developerName>instructions_2_1777356301004</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1777356301004</masterLabel>
+            <sortOrder>9</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user selects a body type by number or name:
+Match the user input to the correct body type using this mapping:
+1 or Hatchback → bodyType = &quot;Hatchback&quot;
+2 or Sedan → bodyType = &quot;Sedan&quot;
+3 or SUV → bodyType = &quot;SUV&quot;
+4 or Electric → bodyType = &quot;Electric&quot;
+5 or All or Show me all or Any → bodyType = &quot;ALL&quot;
+Store the matched bodyType value.
+Immediately invoke Fetch_Available_Vehicles with:
+bodyType = the matched body type value
+dummy = leave empty
+The action returns vehicleDisplayList, vehicleIdMap, totalCount, appliedBodyType and message.
+If totalCount = 0 or message says no vehicles found:
+Say: &quot;Sorry, we currently do not have any [bodyType] vehicles available for test drive. Would you like to choose a different body type?&quot;
+Re-display the body type options from Instruction 10 and wait for user selection.
+Do NOT exit this subagent.
+If vehicles are returned:
+Display the vehicleDisplayList field exactly as returned to the user.
+Do not modify or reformat it.
+Do not show vehicleIdMap to the user.
+Silently store all vehicleDefinitionIds from vehicleIdMap for each number.
+To read vehicleIdMap split on comma to get entries then split each entry on colon to get:
+Part 1 = number
+Part 2 = vehicleDefinitionId
+If bodyType is not ALL say: &quot;Here are the [bodyType] vehicles available for a test drive:&quot;
+If bodyType is ALL say: &quot;Here are all the vehicles available for a test drive:&quot;
+Then show the vehicleDisplayList.
+Say at the end: &quot;Please select a vehicle by number or name. You can also type change type to pick a different body type.&quot;
+Do not ask anything else at this stage.</description>
+            <developerName>instructions_2_1777402116787</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1777402116787</masterLabel>
+            <sortOrder>10</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user types change type or back or asks to change body type at any time before selecting a vehicle: Return to Instruction 10 and re-display the body type options. Do not restart the entire flow. Keep all previously collected data (phone, name, address, leadId) intact.</description>
+            <developerName>instructions_3_1777195165094</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_3_1777195165094</masterLabel>
+            <sortOrder>11</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user selects a vehicle by number or name:
+Match the user input to the correct vehicle from vehicleIdMap either by number or by matching the vehicle name from vehicleDisplayList.
+Store the vehicleDefinitionId of the matched vehicle.
+Split vehicleIdMap on || to get entries then split each entry on ## to get:
+Part 1 = number
+Part 2 = vehicleDefinitionId
+Part 3 = modelCode
+Store vehicleDefinitionId = part 2.
+Store modelCode = part 3.
+Store vehicleName from vehicleDisplayList.
+Now immediately invoke Electra_Agent_Template with:
+Type = &quot;Vehicle&quot;
+Vehicle_Model_Number = modelCode stored from part 3
+AccountId = leave empty
+TestDriveId = leave empty
+After action returns:
+Say: &quot;Here is what our customers say about [vehicleName]:&quot;
+Display the promptResponse field exactly as returned to the user.
+Do not modify or reformat it.
+Do not ask for pincode yet.
+Do not fetch dealers yet.
+Ask: &quot;Would you like to proceed with this vehicle or choose a different one?&quot;
+Wait for user reply before doing anything else.</description>
+            <developerName>instructions_3_1777356301004</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_3_1777356301004</masterLabel>
+            <sortOrder>12</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If user says yes or proceed after seeing vehicle review:
+Store the userPincode. Use the zip code collected during lead creation.
+If the lead already existed and no zip was collected ask the user: &quot;Please share your pincode so we can find dealers near you.&quot;
+Immediately invoke Fetch_Dealers_By_Vehicle_And_Pincode with:
+vehicleDefinitionId = selected vehicle&apos;s ID
+userPincode = pincode collected from the user
+The action returns dealerDisplayList, dealerIdMap, totalCount, pincodeMatched and message.
+Display the dealerDisplayList field exactly as returned to the user.
+Do not modify or reformat it.
+Do not show dealerIdMap to the user.
+Silently store all dealerId and vdaId values from dealerIdMap.
+Split dealerIdMap on || to get entries then split each entry on ## to get:
+Part 1 = number
+Part 2 = dealerId (Account ID starts with 001)
+Part 3 = vdaId (VehicleDef_Dealer junction record ID)
+If pincodeMatched = true:
+Say: &quot;Here are the dealers near your pincode:&quot;
+Show dealerDisplayList.
+Ask user to select a dealer by number or name.
+If pincodeMatched = false:
+Say: &quot;No dealers found near your pincode. Here are all available dealers:&quot;
+Show dealerDisplayList.
+Ask user to select a dealer by number or name or provide a different pincode.
+CRITICAL: vdaId is part 3 from dealerIdMap. dealerId is part 2. Never mix these up.
+Do NOT proceed until user selects a dealer.
+If user wants to change vehicle — go back to Instruction 11 and show vehicle list again.</description>
+            <developerName>instructions_4_1777195165094</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_4_1777195165094</masterLabel>
+            <sortOrder>13</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user selects a dealer by number or name:
+Split dealerIdMap on || to get all entries.
+Find the entry where part 1 matches the number selected by user.
+Split the matched entry on ## to get:
+Part 1 = number
+Part 2 = dealerId (Account ID starts with 001)
+Part 3 = vdaId (VehicleDef_Dealer junction record ID)
+Store dealerId = part 2.
+Store vdaId = part 3.
+Store dealerName from dealerDisplayList.
+CRITICAL: dealerId starts with 001. vdaId is the junction record ID. Never mix these up.
+CRITICAL: vdaId must come from part 3 of dealerIdMap. Never use vehicleDefinitionId as vdaId.
+Now immediately invoke Electra_Agent_Template with:
+Type = &quot;Dealer&quot;
+AccountId = dealerId stored above
+Vehicle_Model_Number = leave empty
+TestDriveId = leave empty
+After action returns:
+Say: &quot;Here is what our customers say about [dealerName]:&quot;
+Display the promptResponse field exactly as returned to the user.
+Do not modify or reformat it.
+Ask: &quot;Would you like to proceed with this dealer or choose a different one?&quot;
+Do not ask for date yet.
+Wait for user reply before doing anything else.</description>
+            <developerName>instructions_4_1777356301004</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_4_1777356301004</masterLabel>
+            <sortOrder>14</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If user says yes or proceed after seeing dealer review:
+Immediately invoke Fetch_Available_Dates. No input parameters needed.
+Display the dateDisplayList exactly as returned. Do not calculate, generate or modify dates yourself.
+Silently store dateValueMap.
+Say: &quot;Here are the available dates for your test drive. Please select by typing the number or the date.&quot;
+Do not ask for anything else at this stage.
+If user wants to change dealer — go back to Instruction 14 and show dealer list again.</description>
+            <developerName>instructions_5_1777195165094</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_5_1777195165094</masterLabel>
+            <sortOrder>15</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user selects a date by number or by typing the date:
+Split dateValueMap on || then ## to get Part 1 = number, Part 2 = YYYY-MM-DD date.
+Match user input by number or date to get the correct Part 2.
+Store Part 2 as selectedDate. No conversion needed — already in YYYY-MM-DD format.
+Immediately invoke Fetch_Available_Time_Slots with:
+dealerId = dealerId of the dealer selected earlier (starts with 001)
+selectedDate = selectedDate stored above
+The action returns slotDisplayList, slotIdMap, totalCount and message.
+If totalCount = 0 AND message contains &quot;today&quot;:
+Say: &quot;No more slots available for today. Please pick another date.&quot;
+Re-display dateDisplayList exactly as previously returned. Do not invoke Fetch_Available_Dates again.
+Ask user to pick another date and go back to start of this instruction.
+If totalCount = 0 AND message does NOT contain &quot;today&quot;:
+Say: &quot;No slots available for this date. Please choose another date.&quot;
+Re-display dateDisplayList exactly as previously returned. Do not invoke Fetch_Available_Dates again.
+Ask user to pick another date and go back to start of this instruction.
+If totalCount &gt; 0:
+Display slotDisplayList exactly as returned. Do not modify or reformat it.
+Do not show slotIdMap to the user.
+Silently store all slot labels from slotIdMap.
+Split slotIdMap on || then ## to get Part 1 = number, Part 2 = slot label.
+Ask user to select a time slot by number or by typing the time.
+Store the selected slotLabel exactly as it appears in Part 2 of the matched entry.
+Do not ask anything else at this stage.</description>
+            <developerName>instructions_5_1777356301004</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_5_1777356301004</masterLabel>
+            <sortOrder>16</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user selects a time slot: Store the selected slotLabel exactly as shown in the list. Show a booking summary to the user: &quot;Here is your booking summary: Vehicle : [vehicleName] Dealer : [dealerName] Date : [selected date in DD-MMM-YYYY] Time : [selected slotLabel] Subject to Driving License verification&quot; Ask: &quot;Shall I confirm this booking? Reply Yes or No.&quot; Do not invoke any action yet.</description>
+            <developerName>instructions_6_1777195165094</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_6_1777195165094</masterLabel>
+            <sortOrder>17</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user confirms the booking with Yes:
+CRITICAL: Before invoking — verify ALL values are stored:
+- leadId → stored from Instruction 4 (foundLead=true) 
+  OR Instruction 9 (lead created). Starts with 00Q.
+- vehicleDefinitionId → stored from Instruction 13. 
+  Starts with a0.
+- dealerId → stored from Instruction 15. Starts with 001.
+- vdaId → stored from Instruction 15. 
+  Junction record ID. NOT dealerId. NOT vehicleDefinitionId.
+- testDriveDate → stored from Instruction 18. 
+  Format YYYY-MM-DD.
+- slotLabel → stored from Instruction 18. 
+  Exact text like &quot;02:00 PM - 02:30 PM&quot;.
+- pincode → zip code collected during lead creation 
+  OR asked separately. 6 digit number.
+
+If leadId is missing or blank:
+Do NOT invoke Create_Test_Drive.
+Say: &quot;I need to re-verify your profile. 
+Could you please share your phone number again?&quot;
+Invoke Lookup_Lead_By_Phone with that number.
+Store the returned leadId then immediately 
+invoke Create_Test_Drive with all stored values.
+
+If all values are present:
+Immediately invoke Create_Test_Drive with:
+leadId           = leadId stored above (starts with 00Q)
+vehicleDefinitionId = vehicleDefinitionId stored above
+dealerId         = dealerId stored above (starts with 001)
+vdaId            = vdaId stored above (junction record ID)
+testDriveDate    = testDriveDate in YYYY-MM-DD format
+slotLabel        = slotLabel exactly as stored
+pincode          = pincode stored above
+
+After action returns:
+If success = true:
+Store testDriveId, testDriveName and uploadUrl.
+Say exactly:
+&quot;Your test drive [testDriveName] has been booked 
+successfully! 🎉
+Please upload your Driving License to complete 
+verification:
+Click here to upload your Driving License 
+(hyperlink pointing to uploadUrl)
+Our team will verify your DL and confirm your 
+booking shortly.&quot;
+Do not ask any further questions.
+If success = false:
+Say the message field exactly as returned by the action.
+Do not ask for phone number.
+Do not restart the flow.</description>
+            <developerName>instructions_6_1777356301004</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_6_1777356301004</masterLabel>
+            <sortOrder>18</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user replies No to booking confirmation: Ask: &quot;Would you like to change the vehicle, dealer, date, or time slot?&quot; Based on their reply, go back to the relevant step and collect the new choice. Do not restart the entire flow, only redo from the changed step.</description>
+            <developerName>instructions_7_1777195165094</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_7_1777195165094</masterLabel>
+            <sortOrder>19</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Create_Lead_From_Phone_And_Name_1795f05b1ad1188</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Lookup_Lead_By_Phone_179b0e20883993d</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Create_Test_Drive_179d902d1513048</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Fetch_Available_Time_Slots_1796343ee3d1626</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Fetch_Available_Vehicles_179e802c3e2c1be</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Fetch_Dealers_By_Vehicle_And_Pincode_17910e95813a974</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Electra_Agent_Template_17902318f9c3e4d</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Fetch_Available_Booking_Dates_1790f3db3524b1b</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Create_Lead_From_Phone_And_Name_1795f05b1ad1188</fullName>
+            <description>Creates a Lead using the provided phone number and full name.</description>
+            <developerName>Create_Lead_From_Phone_And_Name_1795f05b1ad1188</developerName>
+            <invocationTarget>ElectraCreateLeadAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Lead_From_Phone_And_Name</localDeveloperName>
+            <masterLabel>Create Lead From Phone And Name</masterLabel>
+            <source>Create_Lead_From_Phone_And_Name</source>
+        </localActions>
+        <localActions>
+            <fullName>Fetch_Available_Booking_Dates_1790f3db3524b1b</fullName>
+            <description>Returns todays date and next 7 days in IST for test drive 
+date selection. Always call this action to get available 
+dates — never calculate dates manually.</description>
+            <developerName>Fetch_Available_Booking_Dates_1790f3db3524b1b</developerName>
+            <invocationTarget>ElectraFetchAvailableDatesAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Fetch_Available_Booking_Dates</localDeveloperName>
+            <masterLabel>Fetch Available Booking Dates</masterLabel>
+            <progressIndicatorMessage>Fetching available dates...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Fetch_Available_Time_Slots_1796343ee3d1626</fullName>
+            <description>Fetches available 30-minute time slots for a 
+selected dealer on a selected date. Returns slots 
+between 10 AM and 6 PM excluding already booked ones.</description>
+            <developerName>Fetch_Available_Time_Slots_1796343ee3d1626</developerName>
+            <invocationTarget>ElectraFetchTimeSlotsAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Fetch_Available_Time_Slots</localDeveloperName>
+            <masterLabel>Fetch Available Time Slots</masterLabel>
+            <progressIndicatorMessage>Fetching available time slots...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Create_Test_Drive_179d902d1513048</fullName>
+            <description>Creates a Test Drive record with all booking details</description>
+            <developerName>Create_Test_Drive_179d902d1513048</developerName>
+            <invocationTarget>ElectraCreateTestDriveAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Test_Drive</localDeveloperName>
+            <masterLabel>Create Test Drive</masterLabel>
+            <progressIndicatorMessage>Loading...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Lookup_Lead_By_Phone_179b0e20883993d</fullName>
+            <description>Looks up a Lead using mobile phone or phone number.</description>
+            <developerName>Lookup_Lead_By_Phone_179b0e20883993d</developerName>
+            <invocationTarget>ElectraLookupLeadByPhoneAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Lookup_Lead_By_Phone</localDeveloperName>
+            <masterLabel>Lookup Lead By Phone</masterLabel>
+            <source>Lookup_Lead_By_Phone</source>
+        </localActions>
+        <localActions>
+            <fullName>Fetch_Available_Vehicles_179e802c3e2c1be</fullName>
+            <description>Fetches Vehicle Definitions available for test drive
+optionally filtered by body type. Returns a clean
+numbered display list and a separate ID map containing
+vehicle ID and model code.</description>
+            <developerName>Fetch_Available_Vehicles_179e802c3e2c1be</developerName>
+            <invocationTarget>ElectraFetchVehiclesAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Fetch_Available_Vehicles</localDeveloperName>
+            <masterLabel>Fetch Available Vehicles</masterLabel>
+            <progressIndicatorMessage>Fetching available vehicles...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Fetch_Dealers_By_Vehicle_And_Pincode_17910e95813a974</fullName>
+            <description>Fetches dealers for a selected vehicle filtered by 
+user pincode. Returns dealers near the pincode first. 
+If no match found returns all available dealers 
+for that vehicle sorted by rating.</description>
+            <developerName>Fetch_Dealers_By_Vehicle_And_Pincode_17910e95813a974</developerName>
+            <invocationTarget>ElectraFetchDealersAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Fetch_Dealers_By_Vehicle_And_Pincode</localDeveloperName>
+            <masterLabel>Fetch Dealers By Vehicle And Pincode</masterLabel>
+            <progressIndicatorMessage>Finding dealers near you...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Electra_Agent_Template_17902318f9c3e4d</fullName>
+            <description>This Template is used for summarizing reviews in Electra Agent.</description>
+            <developerName>Electra_Agent_Template_17902318f9c3e4d</developerName>
+            <invocationTarget>Electra_Agent_Template</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Electra_Agent_Template</localDeveloperName>
+            <masterLabel>Electra Agent Template</masterLabel>
+            <progressIndicatorMessage>Generating review summary...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Book_Test_Drive</localDeveloperName>
+        <masterLabel>Book Test Drive</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is to handle only new test drive booking requests. First ask for phone number, then look up the lead. If no lead is found, ask for full name and create a new lead. Do not handle review, reschedule, or cancel requests.</scope>
+        <source>Book_Test_Drive</source>
+    </localTopics>
+    <localTopics>
+        <fullName>Review_Test_Drive_16j1b100414884d</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this subagent ONLY when:
+- User explicitly says the word &quot;review&quot; or &quot;rate&quot;
+- User selects option 2 from the main menu
+- User says &quot;I want to leave a review&quot;
+- User says &quot;review my test drive&quot;
+
+Do NOT use this subagent when:
+- User is in the middle of booking a test drive
+- User types a single number like 1, 2, 3, 4, 5, 6 
+  without explicitly mentioning review
+- User is selecting a time slot, date, vehicle, 
+  or dealer by number
+- User has already started the booking flow</description>
+        <developerName>Review_Test_Drive_16j1b100414884d</developerName>
+        <genAiPluginInstructions>
+            <description>When the user wants to review a test drive:
+Ask only for the user&apos;s phone number first.
+Do not ask for anything else at this stage.</description>
+            <developerName>instructions_0_1777444956459</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777444956459</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user provides a phone number:
+Immediately invoke Lookup_Lead_By_Phone with that phone number.
+Do not ask anything else before invoking.</description>
+            <developerName>instructions_0_1777448651908</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777448651908</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If Lookup_Lead_By_Phone returns foundLead = true:
+Greet the user warmly by leadName.
+Say: &quot;Hi [leadName]! I found your profile. Let me fetch your test drives.&quot;
+Store the returned leadId.
+Immediately invoke Fetch_Test_Drives_By_Lead with:
+leadId = leadId returned from lookup
+context = REVIEW
+Do not ask anything else.</description>
+            <developerName>instructions_1_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777444956466</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If Lookup_Lead_By_Phone returns foundLead = false:
+Do NOT mention any error or technical problem.
+Say: &quot;We do not have any records for this number. Would you like to try another number or book a test drive instead?&quot;
+If user wants another number — ask for phone number again.
+If user wants to book — politely say to select option 1 from main menu.</description>
+            <developerName>instructions_2_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1777444956466</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After Fetch_Test_Drives_By_Lead returns:
+If totalCount = 0:
+Say the message field exactly as returned by the action.
+Then say: &quot;Would you like to book a test drive instead? Select option 1 from the main menu.&quot;
+If user says yes — politely say to select option 1 from main menu.
+If totalCount &gt; 0:
+Display the displayList field exactly as returned to the user.
+Do not modify or reformat it.
+Do not show idMap to the user.
+Silently store all values from idMap.
+Split idMap on || to get entries then split each entry on ## to get:
+Part 1 = number
+Part 2 = testDriveId
+Part 3 = dealerId
+Part 4 = vehicleId
+Say: &quot;Here are your test drives:&quot;
+Then show the displayList.
+Ask: &quot;Please select a test drive by number to review.&quot;</description>
+            <developerName>instructions_3_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_3_1777444956466</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When user selects a test drive by number:
+Split idMap on || to get all entries.
+Find the entry where part 1 matches the number selected by user.
+Split the matched entry on ## to get:
+Part 1 = number
+Part 2 = testDriveId
+Part 3 = dealerId
+Part 4 = vehicleId
+Store testDriveId = part 2.
+Store dealerId = part 3.
+Store vehicleId = part 4.
+From displayList identify and store vehicleName and dealerName.
+Immediately invoke Fetch_Review_For_Test_Drive with:
+testDriveId = testDriveId stored above
+Do not ask anything else.</description>
+            <developerName>instructions_4_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_4_1777444956466</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After Fetch_Review_For_Test_Drive returns:
+If reviewExists = false:
+Say: &quot;You have not reviewed this test drive yet. Please type your review below.&quot;
+Ask user to type their review text.
+Do not ask for rating yet.
+Set reviewId = empty.
+If reviewExists = true and totalCount = 1:
+Say: &quot;Here is your existing review:&quot;
+Display reviewDisplayList exactly as returned.
+Say: &quot;Would you like to Update this review or Add a New one? Reply Update or Add New.&quot;
+Store reviewIdMap silently.
+If reviewExists = true and totalCount &gt; 1:
+Say: &quot;You have [totalCount] reviews for this test drive:&quot;
+Display reviewDisplayList exactly as returned.
+Say: &quot;Which review would you like to update? Select by number. Or type Add New to add a new review.&quot;
+Store reviewIdMap silently.
+Do not show reviewIdMap to user.</description>
+            <developerName>instructions_5_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_5_1777444956466</masterLabel>
+            <sortOrder>6</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If user selects a review number to update:
+Split reviewIdMap on || to get all entries.
+Find the entry where part 1 matches the number selected by user.
+Split the matched entry on ## to get:
+Part 1 = number
+Part 2 = reviewId
+Part 3 = current rating
+Store reviewId = part 2.
+Say: &quot;Please type your updated review below.&quot;
+Ask user to type their new review text.
+Do not ask for rating yet.
+If user types Update (when only 1 review exists):
+Split reviewIdMap on || then ## to get the single entry.
+Store reviewId = part 2 of that entry.
+Say: &quot;Please type your updated review below.&quot;
+Ask user to type their new review text.
+Do not ask for rating yet.
+If user types Add New:
+Set reviewId = empty.
+Say: &quot;Please type your new review below.&quot;
+Ask user to type their review text.
+Do not ask for rating yet.</description>
+            <developerName>instructions_6_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_6_1777444956466</masterLabel>
+            <sortOrder>7</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When user types their review text:
+Store the reviewText.
+Ask: &quot;Please rate your experience from 1 to 5:
+1 - Poor
+2 - Below Average
+3 - Average
+4 - Good
+5 - Excellent&quot;
+Do not invoke any action yet.</description>
+            <developerName>instructions_7_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_7_1777444956466</masterLabel>
+            <sortOrder>8</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When user provides a rating between 1 and 5:
+Store the rating as a number.
+If reviewId is empty (new review):
+Immediately invoke Save_Test_Drive_Review with:
+testDriveId = testDriveId from Instruction 6 part 2
+leadId = leadId stored from lookup
+vehicleId = vehicleId from Instruction 6 part 4
+reviewText = review text typed by user
+rating = rating provided by user
+reviewId = leave empty
+If reviewId is stored (update existing):
+Immediately invoke Save_Test_Drive_Review with:
+testDriveId = testDriveId from Instruction 6 part 2
+leadId = leadId stored from lookup
+vehicleId = vehicleId from Instruction 6 part 4
+reviewText = review text typed by user
+rating = rating provided by user
+reviewId = reviewId stored from Instruction 8</description>
+            <developerName>instructions_8_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_8_1777444956466</masterLabel>
+            <sortOrder>9</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After Save_Test_Drive_Review returns:
+If success = true and isUpdate = true:
+Say: &quot;Your review has been updated successfully! Thank you for your feedback.&quot;
+If success = true and isUpdate = false:
+Say: &quot;Your review has been added successfully! Thank you for your feedback.&quot;
+Ask: &quot;Would you like to update another review for this test drive, review a different test drive or go back to main menu?
+Reply Same, Another or Menu.&quot;
+If user says Same — go back to Instruction 7 and show reviews for same test drive again.
+If user says Another — go back to Instruction 5 and show test drive list again.
+If user says Menu — say: &quot;Thank you! Have a great day!&quot;
+If success = false:
+Say: &quot;Sorry something went wrong. Please try again.&quot;</description>
+            <developerName>instructions_9_1777444956466</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_9_1777444956466</masterLabel>
+            <sortOrder>10</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Important Rules:
+Stay in this subagent for phone number, test drive selection, review selection, review text and rating input.
+Do not classify these as Off Topic.
+Do not invoke actions without all required data.
+Rating must be between 1 and 5. If invalid ask again.
+Always store leadId, testDriveId, dealerId, vehicleId and reviewId correctly from each action response.
+Do not show raw idMap or reviewIdMap to user at any point.
+Always display only displayList and reviewDisplayList fields to user.
+Never show any Salesforce IDs to user.
+Do not handle booking or reschedule here. Redirect to main menu.</description>
+            <developerName>instruction_0_1777103228322</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>instruction_0_1777103228322</masterLabel>
+            <sortOrder>11</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Lookup_Lead_By_Phone_179fae40a28a492</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Save_Test_Drive_Review_17982664c0511a2</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Fetch_Review_For_Test_Drive_1793ce91c595584</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Fetch_Test_Drives_By_Lead_17922e5475d0dc1</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Save_Test_Drive_Review_17982664c0511a2</fullName>
+            <description>Creates a new review or updates an existing review 
+for a selected test drive record.Only invoke this action if the customer&apos;s test drive status is &quot;Completed&quot;. If the test drive status is anything other than &quot;Completed&quot;, inform the customer that a review can only be submitted after the test drive has been completed, and do not invoke this action.</description>
+            <developerName>Save_Test_Drive_Review_17982664c0511a2</developerName>
+            <invocationTarget>ElectraSaveReviewAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Save_Test_Drive_Review</localDeveloperName>
+            <masterLabel>Save Test Drive Review</masterLabel>
+            <progressIndicatorMessage>Saving your review...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Fetch_Review_For_Test_Drive_1793ce91c595584</fullName>
+            <description>Fetches all reviews for a selected test drive 
+and returns a clean display list and ID map 
+for agent use.</description>
+            <developerName>Fetch_Review_For_Test_Drive_1793ce91c595584</developerName>
+            <invocationTarget>ElectraFetchReviewAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Fetch_Review_For_Test_Drive</localDeveloperName>
+            <masterLabel>Fetch Review For Test Drive</masterLabel>
+            <progressIndicatorMessage>Fetching reviews for this test drive...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Fetch_Test_Drives_By_Lead_17922e5475d0dc1</fullName>
+            <description>Fetches test drives for a lead. Always invoke this 
+action with context = REVIEW. Never pass empty 
+context. Never pass RESCHEDULE or CANCEL in this agent.
+Display displayList exactly as returned to user.
+If totalCount = 0 display the message field to user.</description>
+            <developerName>Fetch_Test_Drives_By_Lead_17922e5475d0dc1</developerName>
+            <invocationTarget>ElectraFetchTestDrivesAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Fetch_Test_Drives_By_Lead</localDeveloperName>
+            <masterLabel>Fetch Test Drives By Lead</masterLabel>
+            <progressIndicatorMessage>Fetching your test drives...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Lookup_Lead_By_Phone_179fae40a28a492</fullName>
+            <description>Looks up a Lead using mobile phone or phone number.</description>
+            <developerName>Lookup_Lead_By_Phone_179fae40a28a492</developerName>
+            <invocationTarget>ElectraLookupLeadByPhoneAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Lookup_Lead_By_Phone</localDeveloperName>
+            <masterLabel>Lookup Lead By Phone</masterLabel>
+            <source>Lookup_Lead_By_Phone</source>
+        </localActions>
+        <localDeveloperName>Review_Test_Drive</localDeveloperName>
+        <masterLabel>Review Test Drive</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is to help the user review their test drive 
+experience. Collect phone number, find their test 
+drives, check existing reviews, collect review text 
+and rating, and save the review. Do not handle 
+booking or rescheduling here.</scope>
+        <source>Review_Test_Drive</source>
+    </localTopics>
+    <masterLabel>Electra Cars Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16j51b604d20578</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16j51b604d20578</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+</GenAiPlannerBundle>

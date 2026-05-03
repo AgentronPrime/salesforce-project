@@ -1,0 +1,21 @@
+{
+  "required" : [ "leadId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "context" : {
+      "title" : "context",
+      "description" : "Pass RESCHEDULE to fetch only active/upcoming test drives \nthat can be rescheduled or cancelled. \nAlways pass RESCHEDULE for this agent. Never leave empty.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "leadId" : {
+      "title" : "leadId",
+      "description" : "The Salesforce ID of the lead returned by Lookup Lead By Phone action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

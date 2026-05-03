@@ -1,0 +1,14 @@
+{
+  "required" : [ "testDriveId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "testDriveId" : {
+      "title" : "testDriveId",
+      "description" : "The Salesforce ID of the test drive to cancel. Stored from the test drive selected by the user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

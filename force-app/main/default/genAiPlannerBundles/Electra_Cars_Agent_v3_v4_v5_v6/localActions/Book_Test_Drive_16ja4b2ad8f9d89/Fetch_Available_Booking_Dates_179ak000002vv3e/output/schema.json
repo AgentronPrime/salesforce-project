@@ -1,0 +1,60 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "dateDisplayList" : {
+      "title" : "dateDisplayList",
+      "description" : "Numbered list of dates to show to the customer. \nDisplay exactly as returned. Do not modify.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "dateValueMap" : {
+      "title" : "dateValueMap",
+      "description" : "Split on || then ## to get Part 1 = number, \nPart 2 = YYYY-MM-DD date. Store silently. \nPass Part 2 to Fetch_Available_Time_Slots as selectedDate.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "message",
+      "description" : "Returns Success or error message.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "todayDisplay" : {
+      "title" : "todayDisplay",
+      "description" : "Today's date in DD-MMM-YYYY in IST. For reference only.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "todayValue" : {
+      "title" : "todayValue",
+      "description" : "Today's date in YYYY-MM-DD in IST. \nUse when selectedDate = today.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalDays" : {
+      "title" : "totalDays",
+      "description" : "Always returns 7. Total number of dates available.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

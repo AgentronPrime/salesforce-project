@@ -1,0 +1,14 @@
+{
+  "required" : [ "testDriveId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "testDriveId" : {
+      "title" : "testDriveId",
+      "description" : "The Salesforce ID of the selected test drive record. \nComes from part 2 of idMap from \nFetch Test Drives By Lead action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

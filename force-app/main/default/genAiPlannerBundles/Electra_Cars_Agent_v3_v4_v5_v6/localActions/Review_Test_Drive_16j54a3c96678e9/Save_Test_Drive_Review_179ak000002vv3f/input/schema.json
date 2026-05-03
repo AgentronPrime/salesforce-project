@@ -1,0 +1,49 @@
+{
+  "required" : [ "leadId", "rating", "reviewText", "testDriveId", "vehicleId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "leadId" : {
+      "title" : "leadId",
+      "description" : "The Salesforce ID of the lead returned by \nLookup Lead By Phone action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "rating" : {
+      "title" : "rating",
+      "description" : "Numeric rating given by user between 1 and 5.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "reviewId" : {
+      "title" : "reviewId",
+      "description" : "Pass this only if updating an existing review. \nLeave empty for new review creation. Comes from \nreviewId returned by Fetch Review For Test Drive action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "reviewText" : {
+      "title" : "reviewText",
+      "description" : "The review text typed by the user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "testDriveId" : {
+      "title" : "testDriveId",
+      "description" : "The Salesforce ID of the selected test drive. \nComes from part 2 of idMap from Fetch Test Drives action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "vehicleId" : {
+      "title" : "vehicleId",
+      "description" : "The Salesforce ID of the Vehicle record linked \nto the selected test drive. Comes from part 4 \nof idMap from Fetch Test Drives action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

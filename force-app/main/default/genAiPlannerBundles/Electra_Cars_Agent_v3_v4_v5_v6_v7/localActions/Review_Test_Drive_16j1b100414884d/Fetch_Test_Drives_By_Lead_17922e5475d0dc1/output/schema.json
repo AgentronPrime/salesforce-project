@@ -1,0 +1,42 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "displayList" : {
+      "title" : "displayList",
+      "description" : "Clean numbered list of test drives to display directly to user. Shows booking name, vehicle, dealer, date and status on separate lines. Display this exactly as returned. Do not modify.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "idMap" : {
+      "title" : "idMap",
+      "description" : "Split on || then ## to get:\nPart 1 = number\nPart 2 = testDriveId\nPart 3 = dealerId\nPart 4 = vehicleId\nStore silently. Do not show to user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "message",
+      "description" : "Display this to user when totalCount = 0. Contains friendly error explaining why no test drives were found.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalCount" : {
+      "title" : "totalCount",
+      "description" : "Total number of test drives returned. If 0 display the message to user.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

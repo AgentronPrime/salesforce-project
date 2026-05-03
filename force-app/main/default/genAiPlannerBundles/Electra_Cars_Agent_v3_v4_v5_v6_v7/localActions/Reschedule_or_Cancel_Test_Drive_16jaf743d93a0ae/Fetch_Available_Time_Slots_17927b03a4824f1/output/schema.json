@@ -1,0 +1,42 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "message" : {
+      "title" : "message",
+      "description" : "Status message. If no slots available it will say so and the agent should ask the user to pick another date from the 7 day window.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "slotDisplayList" : {
+      "title" : "slotDisplayList",
+      "description" : "Clean numbered list of available time slots on separate lines. Display this exactly as returned to the user without any modification or reformatting.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "slotIdMap" : {
+      "title" : "slotIdMap",
+      "description" : "Number to slot label mapping in format\n1##10:00 AM - 10:30 AM||2##10:30 AM - 11:00 AM.\nSplit on || to get entries then split each entry\non ## to get:\nPart 1 = number\nPart 2 = exact slot label to store and use.\nStore silently. Never show to user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalCount" : {
+      "title" : "totalCount",
+      "description" : "Total number of available time slots for the selected dealer and date.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

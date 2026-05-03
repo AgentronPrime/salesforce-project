@@ -1,0 +1,28 @@
+{
+  "required" : [ "newDate", "newSlotLabel", "testDriveId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "newDate" : {
+      "title" : "newDate",
+      "description" : "The new date selected by the user in YYYY-MM-DD format",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "newSlotLabel" : {
+      "title" : "newSlotLabel",
+      "description" : "The new time slot selected by the user exactly as shown in the list e.g. 10:00 AM - 10:30 AM",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "testDriveId" : {
+      "title" : "testDriveId",
+      "description" : "The Salesforce ID of the test drive to reschedule. Stored from the test drive selected by the user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

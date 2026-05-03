@@ -204,7 +204,7 @@
             <assignToReference>MUIDList</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>MUID</elementReference>
+                <elementReference>Get_Messaging_User_records.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -232,6 +232,40 @@
             <targetReference>status_update_check</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Messaging_end_User_exists</name>
+        <label>Messaging end User exists</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Messaging_User_records</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assigne_MUIDs</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+        <rules>
+            <name>No</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Messaging_User_records</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>No</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>status_update_check</name>
         <label>status update check</label>
@@ -328,6 +362,26 @@
     TEXT(MINUTE(TIMEVALUE({!$Record.Test_Drive_Date_Time__c})))
 )</expression>
     </formulas>
+    <formulas>
+        <name>FormattedPhone</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(
+  SUBSTITUTE(
+    SUBSTITUTE(
+      SUBSTITUTE(
+        SUBSTITUTE(
+          {!$Record.Lead__r.MobilePhone},
+          &quot;+&quot;, &quot;&quot;
+        ),
+        &quot;-&quot;, &quot;&quot;
+      ),
+      &quot;(&quot;, &quot;&quot;
+    ),
+    &quot;)&quot;, &quot;&quot;
+  ),
+  &quot; &quot;, &quot;&quot;
+)</expression>
+    </formulas>
     <interviewLabel>SFDC_Test {!$Flow.CurrentDateTime}</interviewLabel>
     <label>SFDC_RecordTrigger_Test</label>
     <processMetadataValues>
@@ -349,11 +403,39 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Messaging_User_records</name>
+        <label>Get Messaging User records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Messaging_end_User_exists</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>MessagingPlatformKey</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FormattedPhone</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>MessagingConsentStatus</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>OptedOut</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>MessagingEndUser</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>assigne_MUIDs</targetReference>
+            <targetReference>Get_Messaging_User_records</targetReference>
         </connector>
         <object>Test_Drive__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>

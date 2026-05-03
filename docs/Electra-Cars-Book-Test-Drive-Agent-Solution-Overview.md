@@ -216,4 +216,14 @@ Exact **Meta template** names, **live** Graph credentials, **production** webhoo
 
 ---
 
+## 14. Potential further improvements (submission narrative)
+
+A concise list for hackathon **“if we had more time”** fields is maintained in **`docs/02-Hackathon-Rules-Alignment-and-Submission.md` §3**. Highlights aligned with the current build:
+
+- **Geolocation** (with user consent) to improve **ZIP / pincode** capture on the **Experience site**, with manual fallback.  
+- **Voice**: org work began (**test agent** + routing metadata such as `voice_agent_route`); **full parity** with the **main** Electra Cars Agent and a polished **demo** were deferred by schedule.  
+- **WhatsApp UX**: use **Messaging session / MessagingEndUser** context to **pre-fill the customer’s phone** so the agent does not re-ask when the same user is already identified on WhatsApp, while keeping explicit phone capture on **web** when needed.
+
+---
+
 *This overview reflects the metadata and Apex present in this repository plus the hackathon scenario text you provided. It is written in the same narrative style as the sample “Warranty Intelligence” document for judge readability; technical diagrams and numbered TDD sections remain in `docs/01-TDD-Test-Drive-Agent.md`.*

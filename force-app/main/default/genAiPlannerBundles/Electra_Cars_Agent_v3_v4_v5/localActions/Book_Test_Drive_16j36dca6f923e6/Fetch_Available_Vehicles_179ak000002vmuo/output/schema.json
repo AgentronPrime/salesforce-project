@@ -1,0 +1,42 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "appliedBodyType" : {
+      "title" : "appliedBodyType",
+      "description" : "The body type filter that was applied. Returns ALL if no filter was used.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "message",
+      "description" : "Status message indicating success or error.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalCount" : {
+      "title" : "totalCount",
+      "description" : "Total number of vehicles returned.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "vehicleList" : {
+      "title" : "vehicleList",
+      "description" : "All vehicles in pipe-delimited format: \n1|VehicleName|VehicleId,2|VehicleName|VehicleId.\nParse by splitting on comma then pipe.\nDisplay ONLY position 1 (number) and position 2 \n(vehicle name) to the user as a clean numbered list.\nDO NOT show VehicleId, for example,\nDO NOT show like 1|Honda City ZX CVT|1Pqak00000010u8CAA,2|Hyundai Creta SX(O)|1Pqak00000010u2CAA,3|Maruti Suzuki Swift ZXi|1Pqak00000010u1CAA,4|Toyota Innova Hycross ZX(O)|1Pqak00000010u7CAA\n\nDO SHOW like 1|Honda City ZX CVT\n2|Hyundai Creta SX(O)\n3|Maruti Suzuki Swift ZXi\n4|Toyota Innova Hycross ZX(O)\nSHOW Data in new lines\n\nPosition 3 is vehicleDefinitionId — store it \nsilently and NEVER show it to the user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

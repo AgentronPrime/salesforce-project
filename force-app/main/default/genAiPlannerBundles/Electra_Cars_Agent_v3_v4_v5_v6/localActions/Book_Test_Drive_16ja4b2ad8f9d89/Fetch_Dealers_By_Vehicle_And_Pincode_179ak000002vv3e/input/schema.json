@@ -1,0 +1,21 @@
+{
+  "required" : [ "userPincode", "vehicleDefinitionId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "userPincode" : {
+      "title" : "userPincode",
+      "description" : "The pincode entered by the user to find nearby dealers. Use the zip code collected during lead creation or ask the user if not already collected.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "vehicleDefinitionId" : {
+      "title" : "vehicleDefinitionId",
+      "description" : "The Salesforce ID of the Vehicle Definition selected by the user. Comes from vehicleIdMap parsed in the previous step.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

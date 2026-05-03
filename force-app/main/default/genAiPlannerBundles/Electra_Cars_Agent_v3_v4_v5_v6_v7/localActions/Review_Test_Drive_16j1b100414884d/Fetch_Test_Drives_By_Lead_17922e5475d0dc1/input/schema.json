@@ -1,0 +1,21 @@
+{
+  "required" : [ "leadId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "context" : {
+      "title" : "context",
+      "description" : "Pass REVIEW to fetch only Completed test drives.\nPass RESCHEDULE or CANCEL to fetch only active \ntest drives. Leave empty for all.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "leadId" : {
+      "title" : "leadId",
+      "description" : "The Salesforce ID of the lead returned by Lookup Lead By Phone action.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

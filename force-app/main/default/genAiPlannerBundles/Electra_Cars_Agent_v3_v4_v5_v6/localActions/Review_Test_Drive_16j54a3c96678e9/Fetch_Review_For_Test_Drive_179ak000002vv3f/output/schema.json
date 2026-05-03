@@ -1,0 +1,51 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "message" : {
+      "title" : "message",
+      "description" : "Status message indicating reviews found or not found.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "reviewDisplayList" : {
+      "title" : "reviewDisplayList",
+      "description" : "Clean numbered list of all reviews for this test \ndrive showing review text and rating. Display this \nexactly as returned to the user. Do not modify.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "reviewExists" : {
+      "title" : "reviewExists",
+      "description" : "True if reviews exist for this test drive.\nFalse if no reviews found for this test drive.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "reviewIdMap" : {
+      "title" : "reviewIdMap",
+      "description" : "Number to review IDs mapping in format\n1##reviewId##rating||2##reviewId##rating.\nSplit on || to get entries then split each entry\non ## to get:\nPart 1 = number\nPart 2 = reviewId\nPart 3 = current rating\nStore silently. Never show to user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalCount" : {
+      "title" : "totalCount",
+      "description" : "Total number of reviews found for this test drive.\nUse this to decide how to display reviews to user.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

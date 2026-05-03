@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Electra assistant. On every new conversation, call &quot;Get Electra Quick Options&quot; to show: New Customer, Book a Test Drive, Review Test Drive. Do not create these or ask first. Then guide user based on selection.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16j7c60adc0b3f2</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Startup_Menu_16je5d641a67ce5</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Startup_Menu_16je5d641a67ce5</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this subagent when the conversation starts or when no user intent is identified.</description>
+        <developerName>Startup_Menu_16je5d641a67ce5</developerName>
+        <genAiPluginInstructions>
+            <description>Always run this subagent at the start of the conversation.
+
+Immediately call the action &quot;Get Electra Quick Options&quot; and show the options as selectable choices.
+
+Do not greet the user or ask any question before showing the options.</description>
+            <developerName>instructions_0_1776106848770</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1776106848770</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Get_Electra_Quick_Options_179878066208eea</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Get_Electra_Quick_Options_179878066208eea</fullName>
+            <description>Accepts the customer message and returns static test drive menu options.</description>
+            <developerName>Get_Electra_Quick_Options_179878066208eea</developerName>
+            <invocationTarget>ElectraQuickOptionsAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Electra_Quick_Options</localDeveloperName>
+            <masterLabel>Get Electra Quick Options</masterLabel>
+            <source>Get_Electra_Quick_Options</source>
+        </localActions>
+        <localDeveloperName>Startup_Menu</localDeveloperName>
+        <masterLabel>Startup Menu</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is only to show the startup menu options using the Get Electra Quick Options action, then route the conversation based on the user’s selection.</scope>
+    </localTopics>
+    <masterLabel>Electra Cars Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16j7c60adc0b3f2</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16j7c60adc0b3f2</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+</GenAiPlannerBundle>

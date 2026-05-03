@@ -1,0 +1,51 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "appliedBodyType" : {
+      "title" : "appliedBodyType",
+      "description" : "The body type filter that was applied. \nReturns ALL if no filter was used.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "message",
+      "description" : "Status message indicating success or error. \nIf no vehicles found for selected body type \nagent should ask user to choose a different \nbody type.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "totalCount" : {
+      "title" : "totalCount",
+      "description" : "Total number of vehicles returned for the \nselected body type.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "vehicleDisplayList" : {
+      "title" : "vehicleDisplayList",
+      "description" : "Clean numbered list of vehicle names on separate \nlines. Display this exactly as returned to the \nuser without any modification or reformatting.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "vehicleIdMap" : {
+      "title" : "vehicleIdMap",
+      "description" : "Number to vehicleDefinitionId and modelCode mapping \nin format 1##VehicleId##ModelCode||2##VehicleId##ModelCode.\nSplit on || to get entries then split each entry \non ## to get:\nPart 1 = number\nPart 2 = vehicleDefinitionId\nPart 3 = modelCode (pass this to Electra_Agent_Template \nas Vehicle_Model_Number when calling review summary)\nStore all parts silently. Never show to user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
