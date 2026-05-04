@@ -48,6 +48,14 @@
         <connector>
             <targetReference>update_Test_Drive</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Upload_URL__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>Test_Drive__c</object>
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
